@@ -96,9 +96,6 @@ public class Configure {
         ElasticsearchTransport transport = new RestClientTransport(restClient, new JacksonJsonpMapper());
         ElasticsearchClient esClient = new ElasticsearchClient(transport);
 
-//        Settings settings = Settings.builder().put("cluster.name",esClusterName).build();
-//        TransportClient esClient = new PreBuiltTransportClient(settings);
-//        esClient.addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName(esHost), esPort));
         return esClient;
     }
 
