@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal" created-in="IU-231.9392.1">
+    <data-source name="mongo" uuid="08040d75-08ce-40c7-ac5e-4bc2d986862c">
+      <database-info product="Mongo DB" version="5.0.6" jdbc-version="4.2" driver-name="MongoDB JDBC Driver" driver-version="1.18" dbms="MONGO" exact-version="5.0.6" exact-driver-version="1.18" />
+      <case-sensitivity plain-identifiers="mixed" quoted-identifiers="mixed" />
+      <secret-storage>master_key</secret-storage>
+      <schema-mapping>
+        <introspection-scope>
+          <node kind="schema" negative="1" />
+        </introspection-scope>
+      </schema-mapping>
+    </data-source>
+    <data-source name="redis" uuid="77f25649-b131-4a84-b1c6-a3b7b86d630e">
+      <database-info product="Redis Standalone" version="6.0.16" jdbc-version="4.2" driver-name="Redis JDBC Driver" driver-version="1.4" dbms="REDIS" exact-version="6.0.16" exact-driver-version="1.4" />
+      <case-sensitivity plain-identifiers="mixed" quoted-identifiers="mixed" />
+      <secret-storage>master_key</secret-storage>
+      <schema-mapping>
+        <introspection-scope>
+          <node kind="schema" qname="@" />
+        </introspection-scope>
+      </schema-mapping>
+    </data-source>
+  </component>
+</project>

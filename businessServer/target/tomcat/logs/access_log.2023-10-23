@@ -1,0 +1,10 @@
+0:0:0:0:0:0:0:1 - - [23/Oct/2023:10:39:16 +0800] "GET / HTTP/1.1" 404 951 http-bio-8088-exec-1 57
+0:0:0:0:0:0:0:1 - - [23/Oct/2023:10:39:16 +0800] "GET /favicon.ico HTTP/1.1" 200 38078 http-bio-8088-exec-3 5
+0:0:0:0:0:0:0:1 - - [23/Oct/2023:10:43:28 +0800] "GET /rest/users/login HTTP/1.1" 400 1070 http-bio-8088-exec-6 21
+0:0:0:0:0:0:0:1 - - [23/Oct/2023:10:44:50 +0800] "GET /rest/users/login HTTP/1.1" 400 1070 http-bio-8088-exec-2 50
+0:0:0:0:0:0:0:1 - - [23/Oct/2023:10:49:55 +0800] "GET /regist/users/login HTTP/1.1" 404 987 http-bio-8088-exec-4 8
+0:0:0:0:0:0:0:1 - - [23/Oct/2023:10:50:18 +0800] "GET /rest/users/register HTTP/1.1" 400 1070 http-bio-8088-exec-5 3
+0:0:0:0:0:0:0:1 - - [23/Oct/2023:10:50:51 +0800] "GET /rest/users/register HTTP/1.1" 400 1070 http-bio-8088-exec-7 1
+0:0:0:0:0:0:0:1 - - [23/Oct/2023:10:51:35 +0800] "GET /rest/users/register HTTP/1.1" 400 1070 http-bio-8088-exec-9 2
+0:0:0:0:0:0:0:1 - - [23/Oct/2023:10:53:42 +0800] "GET /rest/users/register HTTP/1.1" 400 1070 http-bio-8088-exec-1 1
+0:0:0:0:0:0:0:1 - - [23/Oct/2023:10:54:23 +0800] "GET /rest/users/register?username=yanying&password=123 HTTP/1.1" 200 27 http-bio-8088-exec-3 847
