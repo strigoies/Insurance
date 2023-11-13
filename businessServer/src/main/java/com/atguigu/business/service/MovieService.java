@@ -97,6 +97,7 @@ public class MovieService {
             if(null == score || score.isEmpty())
                 movie.setPrice(0D);
             else
+                //TODO:这个地方需要改，价格在Insurance表用已经有了，不需要再处理
                 movie.setPrice(score.get("price",0D));
         }catch (IOException e) {
             e.printStackTrace();

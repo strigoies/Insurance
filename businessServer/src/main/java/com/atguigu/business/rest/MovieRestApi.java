@@ -39,9 +39,8 @@ public class MovieRestApi {
 //    private TagService tagService;
 
     /**
+     * 该接口暂时不用
      * 获取推荐的电影【实时推荐6 + 内容推荐4】
-     * @param username
-     * @param model
      * @return
      */
     // TODO: 混合推荐结果中，基于内容的推荐，基于MID，而非UID
@@ -60,10 +59,8 @@ public class MovieRestApi {
     }
 
     /**
-     *
-     * @param username
-     * @param model
-     * @return
+     *该接口用到UserRecs表和GenresTopInsurances表
+     * 逻辑：如果有用户推荐矩阵，则返回结果；如果没有，则返回TOP10表中内容
      */
     @RequestMapping(value = "/wish", produces = "application/json", method = RequestMethod.GET )
     @ResponseBody
@@ -85,9 +82,8 @@ public class MovieRestApi {
     }
 
     /**
-     * 获取热门推荐
-     * @param model
-     * @return
+     * 所用表RateMoreRecentlyInsurances
+     * 逻辑：查热门表
      */
     @RequestMapping(value = "/hot", produces = "application/json", method = RequestMethod.GET )
     @ResponseBody
@@ -99,9 +95,8 @@ public class MovieRestApi {
     }
 
     /**
-     * 获取新添加的电影
-     * @param model
-     * @return
+     * 所用表：Insurance
+     * 逻辑：用SQL查最新保险
      */
     @RequestMapping(value = "/new", produces = "application/json", method = RequestMethod.GET )
     @ResponseBody
@@ -112,10 +107,9 @@ public class MovieRestApi {
     }
 
     /**
+     * 所用表：ES表
+     * 逻辑：使用ES的相关查询方法
      * 获取电影详细页面相似的电影集合
-     * @param id
-     * @param model
-     * @return
      */
     @RequestMapping(value = "/same/{id}", produces = "application/json", method = RequestMethod.GET )
     @ResponseBody
@@ -127,10 +121,8 @@ public class MovieRestApi {
     }
 
     /**
-     * 获取单个电影的信息
-     * @param id
-     * @param model
-     * @return
+     * 所用表：Insurance
+     * 逻辑：获取单个电影的信息
      */
     @RequestMapping(value = "/info/{id}", produces = "application/json", method = RequestMethod.GET )
     @ResponseBody
@@ -142,11 +134,8 @@ public class MovieRestApi {
     }
 
     /**
-     * 模糊查询电影
-     * @param query
-     * @param num
-     * @param model
-     * @return
+     * 所用表：ES
+     * 逻辑：模糊查询电影
      */
     @RequestMapping(value = "/search", produces = "application/json", method = RequestMethod.GET )
     @ResponseBody
@@ -159,10 +148,8 @@ public class MovieRestApi {
     }
 
     /**
-     * 查询类别电影
-     * @param category
-     * @param model
-     * @return
+     * 所用表：ES
+     * 逻辑：查询类别电影
      */
     @RequestMapping(value = "/genres", produces = "application/json", method = RequestMethod.GET )
     @ResponseBody

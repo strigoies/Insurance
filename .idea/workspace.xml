@@ -10,7 +10,11 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ad15df8b-8e7a-4a01-b88b-6db965613286" name="Default" comment="" />
+    <list default="true" id="ad15df8b-8e7a-4a01-b88b-6db965613286" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/businessServer/src/main/java/com/atguigu/business/rest/MovieRestApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/businessServer/src/main/java/com/atguigu/business/rest/MovieRestApi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/businessServer/src/main/java/com/atguigu/business/service/MovieService.java" beforeDir="false" afterPath="$PROJECT_DIR$/businessServer/src/main/java/com/atguigu/business/service/MovieService.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -873,7 +877,7 @@
       <workItem from="1698195194026" duration="30886000" />
       <workItem from="1698801902613" duration="10451000" />
       <workItem from="1699231978714" duration="9770000" />
-      <workItem from="1699320248016" duration="30354000" />
+      <workItem from="1699320248016" duration="33720000" />
     </task>
     <servers />
   </component>
