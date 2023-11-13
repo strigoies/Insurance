@@ -37,6 +37,7 @@ public class OrderService {
     }
 
     public boolean createOrder(OrderRequest request){
+        //TODO:因表结构设计改变，功能还没适配
         Order order = new Order();
         MovieService movieService = new MovieService();
         order.setCustomer_id(request.getUid());

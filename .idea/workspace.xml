@@ -10,10 +10,11 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ad15df8b-8e7a-4a01-b88b-6db965613286" name="Default" comment="">
+    <list default="true" id="ad15df8b-8e7a-4a01-b88b-6db965613286" name="Default" comment="梳理下现有接口用到的表和接口逻辑">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/08040d75-08ce-40c7-ac5e-4bc2d986862c.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/08040d75-08ce-40c7-ac5e-4bc2d986862c.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/businessServer/src/main/java/com/atguigu/business/rest/MovieRestApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/businessServer/src/main/java/com/atguigu/business/rest/MovieRestApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/businessServer/src/main/java/com/atguigu/business/service/MovieService.java" beforeDir="false" afterPath="$PROJECT_DIR$/businessServer/src/main/java/com/atguigu/business/service/MovieService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/businessServer/src/main/java/com/atguigu/business/service/OrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/businessServer/src/main/java/com/atguigu/business/service/OrderService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -877,8 +878,17 @@
       <workItem from="1698195194026" duration="30886000" />
       <workItem from="1698801902613" duration="10451000" />
       <workItem from="1699231978714" duration="9770000" />
-      <workItem from="1699320248016" duration="33720000" />
+      <workItem from="1699320248016" duration="36958000" />
     </task>
+    <task id="LOCAL-00001" summary="梳理下现有接口用到的表和接口逻辑">
+      <option name="closed" value="true" />
+      <created>1699841999087</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1699841999087</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -951,6 +961,8 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/.." />
     </ignored-roots>
+    <MESSAGE value="梳理下现有接口用到的表和接口逻辑" />
+    <option name="LAST_COMMIT_MESSAGE" value="梳理下现有接口用到的表和接口逻辑" />
   </component>
   <component name="editorHistoryManager">
     <entry file="jar://$MAVEN_REPOSITORY$/org/apache/spark/spark-core_2.11/2.1.1/spark-core_2.11-2.1.1-sources.jar!/org/apache/spark/rdd/RDD.scala">

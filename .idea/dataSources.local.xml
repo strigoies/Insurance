@@ -7,7 +7,10 @@
       <secret-storage>master_key</secret-storage>
       <schema-mapping>
         <introspection-scope>
-          <node kind="schema" negative="1" />
+          <node kind="schema">
+            <name qname="Insurance" />
+            <name qname="recommender" />
+          </node>
         </introspection-scope>
       </schema-mapping>
     </data-source>
