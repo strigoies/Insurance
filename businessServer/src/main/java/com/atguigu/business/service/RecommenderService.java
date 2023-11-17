@@ -1,7 +1,10 @@
 package com.atguigu.business.service;
 
 import co.elastic.clients.elasticsearch.ElasticsearchClient;
+import co.elastic.clients.elasticsearch._types.query_dsl.*;
+import co.elastic.clients.elasticsearch.core.SearchRequest;
 import co.elastic.clients.elasticsearch.core.SearchResponse;
+import co.elastic.clients.elasticsearch.core.search.Hit;
 import com.atguigu.business.model.recom.Recommendation;
 import com.atguigu.business.model.request.*;
 import com.atguigu.business.utils.Constant;
@@ -14,6 +17,7 @@ import org.bson.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -48,10 +52,26 @@ public class RecommenderService {
 
     // 基于内容的推荐算法
     private List<Recommendation> findContentBasedMoreLikeThisRecommendations(int mid, int maxItems) {
-        MoreLikeThisQueryBuilder query = QueryBuilders.moreLikeThisQuery(
-                new MoreLikeThisQueryBuilder.Item[]{new MoreLikeThisQueryBuilder.Item(Constant.ES_INDEX, Constant.ES_MOVIE_TYPE, String.valueOf(mid))});
-
-        return parseESResponse(esClient.prepareSearch().setQuery(query).setSize(maxItems).execute().actionGet());
+        MoreLikeThisQuery query = new MoreLikeThisQuery.Builder()
+                .fields(Constant.ES_INDEX, Constant.ES_MOVIE_TYPE, String.valueOf(mid))
+                .maxQueryTerms(maxItems)
+                .build();
+//        MoreLikeThisQueryBuilder query = QueryBuilders.moreLikeThisQuery(
+//                new MoreLikeThisQueryBuilder.Item[]{new MoreLikeThisQueryBuilder.Item(Constant.ES_INDEX, Constant.ES_MOVIE_TYPE, String.valueOf(mid))});
+        MoreLikeThisQuery moreLikeThisQuery = MoreLikeThisQuery.of(m ->
+                m.fields(Constant.ES_INDEX, Constant.ES_MOVIE_TYPE, String.valueOf(mid))
+                        .like(new Like.Builder().text(String.valueOf(mid)).build())
+        );
+        SearchRequest searchRequest = SearchRequest.of(s -> s.index(Constant.ES_INDEX)
+                .size(maxItems)
+                .query(Query.of(q -> q.moreLikeThis(moreLikeThisQuery))));
+        try{
+            SearchResponse<Recommendation> response = esClient.search(searchRequest, Recommendation.class);
+            return parseESResponse(response);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return new ArrayList<Recommendation>();
     }
 
     // 实时推荐
@@ -81,14 +101,33 @@ public class RecommenderService {
 
     // 全文检索
     private List<Recommendation> findContentBasedSearchRecommendations(String text, int maxItems) {
-        MultiMatchQueryBuilder query = QueryBuilders.multiMatchQuery(text, "name", "descri");
-        return parseESResponse(esClient.prepareSearch().setIndices(Constant.ES_INDEX).setTypes(Constant.ES_MOVIE_TYPE).setQuery(query).setSize(maxItems).execute().actionGet());
+//        MultiMatchQueryBuilder query = QueryBuilders.multiMatchQuery(text, "name", "descri");
+        MultiMatchQuery query = MultiMatchQuery.of(m ->
+                m.fields(text, "name", "descri"));
+        SearchRequest searchRequest = SearchRequest.of(s -> s.index(Constant.ES_INDEX)
+                .size(maxItems)
+                .query(Query.of(q -> q.multiMatch(query))));
+        try{
+            SearchResponse<Recommendation> response = esClient.search(searchRequest, Recommendation.class);
+            return parseESResponse(response);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+//        return parseESResponse(esClient.prepareSearch().setIndices(Constant.ES_INDEX).setTypes(Constant.ES_MOVIE_TYPE).setQuery(query).setSize(maxItems).execute().actionGet());
+        return new ArrayList<Recommendation>();
     }
 
     private List<Recommendation> parseESResponse(SearchResponse response) {
         List<Recommendation> recommendations = new ArrayList<>();
-        for (SearchHit hit : response.getHits()) {
-            recommendations.add(new Recommendation((int) hit.getSourceAsMap().get("mid"), (double) hit.getScore()));
+//        for (SearchHit hit : response.getHits()) {
+//            recommendations.add(new Recommendation((int) hit.getSourceAsMap().get("mid"), (double) hit.getScore()));
+//        }
+
+        for (Object hit : response.hits().hits()) {
+            Hit h = (Hit) hit;
+            Recommendation recommendation = (Recommendation) h.source();
+            if (recommendation == null) continue;
+            recommendations.add(new Recommendation(recommendation.getMid(), h.score()));
         }
         return recommendations;
     }
@@ -173,8 +212,20 @@ public class RecommenderService {
     public List<Recommendation> getContentBasedGenresRecommendations(SearchRecommendationRequest request) {
 
         // 保险分类
-        FuzzyQueryBuilder query = QueryBuilders.fuzzyQuery("genres", request.getText());
-        return parseESResponse(esClient.prepareSearch().setIndices(Constant.ES_INDEX).setTypes(Constant.ES_MOVIE_TYPE).setQuery(query).setSize(request.getSum()).execute().actionGet());
+        FuzzyQuery query = FuzzyQuery.of(m ->
+                m.field("genres").value(request.getText()));
+        SearchRequest searchRequest = SearchRequest.of(s -> s.index(Constant.ES_INDEX)
+                .size(request.getSum())
+                .query(Query.of(q -> q.fuzzy(query))));
+        try{
+            SearchResponse<Recommendation> response = esClient.search(searchRequest, Recommendation.class);
+            return parseESResponse(response);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return new ArrayList<Recommendation>();
+//        FuzzyQueryBuilder query = QueryBuilders.fuzzyQuery("genres", request.getText());
+//        return parseESResponse(esClient.prepareSearch().setIndices(Constant.ES_INDEX).setTypes(Constant.ES_MOVIE_TYPE).setQuery(query).setSize(request.getSum()).execute().actionGet());
 
         /*FuzzyQueryBuilder query = QueryBuilders.fuzzyQuery("genres","意外医疗保险责任");
         //WildcardQueryBuilder query=QueryBuilders.wildcardQuery("genres", request.getText());
