@@ -28,7 +28,7 @@ case class Insurance(mid:Int,name:String,descri:String,issue:String,genres:Strin
   * @param uri MongoDB连接
   * @param db  MongoDB数据库
   */
-case class MongoConfig(uri:String, db:String)
+//case class MongoConfig(uri:String, db:String)
 
 /**
   *
@@ -37,7 +37,7 @@ case class MongoConfig(uri:String, db:String)
   * @param index            需要操作的索引
   * @param clustername      集群名称，默认elasticsearch
   */
-case class ESConfig(httpHosts:String, transportHosts:String, index:String, clustername:String)
+//case class ESConfig(httpHosts:String, transportHosts:String, index:String, clustername:String)
 object IsDataLoader {
 
   // 定义常量

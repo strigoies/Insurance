@@ -41,7 +41,8 @@ public class Constant {
 
     //************** FOR ELEASTICSEARCH ****************
 
-    public static String ES_INDEX = "recommender";
+    //ES保险列表
+    public static String ES_INDEX = "Insurance";
 
     public static String ES_MOVIE_TYPE = "Movie";
 
