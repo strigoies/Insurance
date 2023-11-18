@@ -73,10 +73,10 @@ public class Configure {
         String password = esPassword;
 
         //tag::create-secure-client-fingerprint
-        String fingerprint = "F4:42:EC:3F:E4:DE:2E:BE:58:A6:68:3F:D8:01:0F:B2:1F:B4:7C:6C:04:EF:3E:B5:0A:FD:97:28:11:12:CA:0F";
+//        String fingerprint = "F4:42:EC:3F:E4:DE:2E:BE:58:A6:68:3F:D8:01:0F:B2:1F:B4:7C:6C:04:EF:3E:B5:0A:FD:97:28:11:12:CA:0F";
 
-        SSLContext sslContext = TransportUtils
-                .sslContextFromCaFingerprint(fingerprint); // <1>
+//        SSLContext sslContext = TransportUtils
+//                .sslContextFromCaFingerprint(fingerprint); // <1>
 
         BasicCredentialsProvider credsProv = new BasicCredentialsProvider(); // <2>
         credsProv.setCredentials(
@@ -84,11 +84,11 @@ public class Configure {
         );
 
         RestClient restClient = RestClient
-                .builder(new HttpHost(host, port, "https")) // <3>
+                .builder(new HttpHost(host, port, "http")) // <3>
                 .setHttpClientConfigCallback(hc -> hc
-                        .setSSLContext(sslContext) // <4>
+//                        .setSSLContext(sslContext) // <4>
                         .setDefaultCredentialsProvider(credsProv)
-                        .setSSLHostnameVerifier((s, sslSession) -> true)
+//                        .setSSLHostnameVerifier((s, sslSession) -> true)
                 )
                 .build();
 
