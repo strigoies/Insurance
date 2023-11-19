@@ -16,9 +16,11 @@ public class Order {
     private String status;
     private String create_time;
 
-    public boolean isEmpty() {
-        return _id == null && customer_id == 0; // 自定义空值条件
-    }
+    private String code;
+
+//    public boolean isEmpty() {
+//        return _id == null && customer_id == 0; // 自定义空值条件
+//    }
 
     public int getInsurance_id() {
         return insurance_id;
@@ -74,5 +76,13 @@ public class Order {
 
     public void setCreate_time(String create_time) {
         this.create_time = create_time;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 }
