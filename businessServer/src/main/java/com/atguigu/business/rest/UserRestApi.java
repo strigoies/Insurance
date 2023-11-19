@@ -46,7 +46,8 @@ public class UserRestApi {
     }
 
     //冷启动问题
-    @RequestMapping(value = "/pref", produces = "application/json", method = RequestMethod.GET)
+    //用户喜好存储
+    @RequestMapping(value = "/store-prefer", produces = "application/json", method = RequestMethod.POST)
     @ResponseBody
     public Model addPrefGenres(@RequestParam("username") String username,@RequestParam("genres") String genres,Model model) throws UnsupportedEncodingException {
         User user = userService.findByUsername(username);
