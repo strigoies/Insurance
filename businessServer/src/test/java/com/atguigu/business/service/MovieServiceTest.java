@@ -1,10 +1,8 @@
 package com.atguigu.business.service;
 
-import co.elastic.clients.elasticsearch._types.query_dsl.MultiMatchQuery;
 import co.elastic.clients.elasticsearch.core.GetRequest;
 import com.atguigu.business.BaseTest;
-import com.atguigu.business.model.domain.Movie;
-import com.atguigu.business.utils.Constant;
+import com.atguigu.business.model.domain.Insurance;
 import co.elastic.clients.elasticsearch.core.GetResponse;
 import co.elastic.clients.elasticsearch.ElasticsearchClient;
 import org.junit.Assert;
@@ -64,7 +62,7 @@ public class MovieServiceTest extends BaseTest {
         GetRequest request = GetRequest.of(m ->
                 m.index("ecommerce").id("4AFCXIsBSmUMdy7Bhcsy"));
         try {
-            GetResponse getResponse = esClient.get(request, Movie.class);
+            GetResponse getResponse = esClient.get(request, Insurance.class);
             System.out.println(getResponse);
         }catch (IOException e) {
             e.printStackTrace();

@@ -4,26 +4,27 @@ public class Constant {
 
     //************** FOR MONGODB ****************
 
-    public static String MONGODB_DATABASE = "recommender";
+    public static String MONGODB_DATABASE = "Insurance";
+    public static String MONGODB_RECOMMENDER_DATABASE = "recommender";
 
     public static String MONGODB_USER_COLLECTION= "User";
 
-    public static String MONGODB_MOVIE_COLLECTION = "Insurance";
+    public static String MONGODB_INSURSNCE_COLLECTION = "Insurance";
 
     public static String MONGODB_RATING_COLLECTION = "Rating";
 
     public static String MONGODB_TAG_COLLECTION = "Tag";
 
-    public static String MONGODB_AVERAGE_MOVIES_SCORE_COLLECTION = "AverageInsurances";
+    public static String MONGODB_AVERAGE_INSURANCES_SCORE_COLLECTION = "AverageInsurances";
 
     //保险相似度矩阵
-    public static String MONGODB_MOVIE_RECS_COLLECTION = "InsuranceRecs";
+    public static String MONGODB_INSURANCE_RECS_COLLECTION = "InsuranceRecs";
 
     //优质保险
-    public static String MONGODB_RATE_MORE_MOVIES_COLLECTION = "RateMoreInsurances";
+    public static String MONGODB_RATE_MORE_INSURANCES_COLLECTION = "RateMoreInsurances";
 
     //最热保险
-    public static String MONGODB_RATE_MORE_MOVIES_RECENTLY_COLLECTION = "RateMoreRecentlyInsurances";
+    public static String MONGODB_RATE_MORE_INSURANCES_RECENTLY_COLLECTION = "RateMoreRecentlyInsurances";
 
     public static String MONGODB_STREAM_RECS_COLLECTION = "StreamRecs";
 
@@ -42,7 +43,7 @@ public class Constant {
     //************** FOR ELEASTICSEARCH ****************
 
     //ES保险列表
-    public static String ES_INDEX = "Insurance";
+    public static String ES_INDEX = "insurance";
 
     public static String ES_MOVIE_TYPE = "Movie";
 

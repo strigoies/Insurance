@@ -1,6 +1,6 @@
 package com.atguigu.business.service;
 
-import com.atguigu.business.model.domain.Movie;
+import com.atguigu.business.model.domain.Insurance;
 import com.atguigu.business.model.domain.Rating;
 import com.atguigu.business.model.recom.Recommendation;
 import com.atguigu.business.model.request.NewRecommendationRequest;
@@ -41,13 +41,13 @@ public class MovieService {
 
     public MongoCollection<Document> getMovieCollection(){
         if(null == movieCollection)
-            movieCollection = mongoClient.getDatabase(Constant.MONGODB_DATABASE).getCollection(Constant.MONGODB_MOVIE_COLLECTION);
+            movieCollection = mongoClient.getDatabase(Constant.MONGODB_DATABASE).getCollection(Constant.MONGODB_INSURSNCE_COLLECTION);
         return movieCollection;
     }
 
     private MongoCollection<Document> getAverageMoviesScoreCollection(){
         if(null == averageMoviesScoreCollection)
-            averageMoviesScoreCollection = mongoClient.getDatabase(Constant.MONGODB_DATABASE).getCollection(Constant.MONGODB_AVERAGE_MOVIES_SCORE_COLLECTION);
+            averageMoviesScoreCollection = mongoClient.getDatabase(Constant.MONGODB_DATABASE).getCollection(Constant.MONGODB_AVERAGE_INSURANCES_SCORE_COLLECTION);
         return averageMoviesScoreCollection;
     }
 
@@ -59,11 +59,11 @@ public class MovieService {
 
     private MongoCollection<Document> getRateMoreMoviesRecently(){
         if(null == rateMoreMoviesRecently)
-            rateMoreMoviesRecently = mongoClient.getDatabase(Constant.MONGODB_DATABASE).getCollection(Constant.MONGODB_RATE_MORE_MOVIES_RECENTLY_COLLECTION);
+            rateMoreMoviesRecently = mongoClient.getDatabase(Constant.MONGODB_DATABASE).getCollection(Constant.MONGODB_RATE_MORE_INSURANCES_RECENTLY_COLLECTION);
         return rateMoreMoviesRecently;
     }
 
-    public List<Movie> getRecommendeMovies(List<Recommendation> recommendations){
+    public List<Insurance> getRecommendeMovies(List<Recommendation> recommendations){
         List<Integer> ids = new ArrayList<>();
         for (Recommendation rec: recommendations) {
             ids.add(rec.getMid());
@@ -71,7 +71,7 @@ public class MovieService {
         return getMovies(ids);
     }
 
-    public List<Movie> getHybirdRecommendeMovies(List<Recommendation> recommendations){
+    public List<Insurance> getHybirdRecommendeMovies(List<Recommendation> recommendations){
         List<Integer> ids = new ArrayList<>();
         for (Recommendation rec: recommendations) {
             ids.add(rec.getMid());
@@ -79,9 +79,9 @@ public class MovieService {
         return getMovies(ids);
     }
 
-    public List<Movie> getMovies(List<Integer> mids){
+    public List<Insurance> getMovies(List<Integer> mids){
         FindIterable<Document> documents = getMovieCollection().find(Filters.in("mid",mids));
-        List<Movie> movies = new ArrayList<>();
+        List<Insurance> movies = new ArrayList<>();
         for (Document document: documents) {
             movies.add(documentToMovie(document));
         }
@@ -89,16 +89,16 @@ public class MovieService {
     }
 
     //返回电影具体信息和平均评分-->返回保险信息和价格
-    private Movie documentToMovie(Document document){
-        Movie movie = null;
+    private Insurance documentToMovie(Document document){
+        Insurance movie = null;
         try{
-            movie = objectMapper.readValue(JSON.serialize(document),Movie.class);
-            Document score = getAverageMoviesScoreCollection().find(Filters.eq("mid",movie.getMid())).first();
-            if(null == score || score.isEmpty())
-                movie.setPrice(0D);
-            else
-                //TODO:这个地方需要改，价格在Insurance表用已经有了，不需要再处理
-                movie.setPrice(score.get("price",0D));
+            movie = objectMapper.readValue(JSON.serialize(document), Insurance.class);
+//            Document score = getAverageMoviesScoreCollection().find(Filters.eq("mid",movie.getMid())).first();
+//            if(null == score || score.isEmpty())
+//                movie.setPrice(0D);
+//            else
+//                //TODO:这个地方需要改，价格在Insurance表用已经有了，不需要再处理
+//                movie.setPrice(score.get("price",0D));
         }catch (IOException e) {
             e.printStackTrace();
         }
@@ -119,7 +119,7 @@ public class MovieService {
         return null != findByMID(mid);
     }
 
-    public Movie findByMID(int mid){
+    public Insurance findByMID(int mid){
         Document document = getMovieCollection().find(new Document("mid",mid)).first();
         if(document == null || document.isEmpty())
             return null;
@@ -134,7 +134,7 @@ public class MovieService {
         getMovieCollection().deleteOne(new Document("mid",mid));
     }
 
-    public List<Movie> getMyRateMovies(int uid){
+    public List<Insurance> getMyRateMovies(int uid){
         FindIterable<Document> documents = getRateCollection().find(Filters.eq("uid",uid));
         List<Integer> ids = new ArrayList<>();
         Map<Integer,Double> scores = new HashMap<>();
@@ -143,17 +143,17 @@ public class MovieService {
             ids.add(rating.getMid());
             scores.put(rating.getMid(),rating.getScore());
         }
-        List<Movie> movies = getMovies(ids);
-        for (Movie movie: movies) {
+        List<Insurance> movies = getMovies(ids);
+        for (Insurance movie: movies) {
             movie.setPrice(scores.getOrDefault(movie.getMid(),movie.getPrice()));
         }
 
         return movies;
     }
 
-    public List<Movie> getNewMovies(NewRecommendationRequest request){
+    public List<Insurance> getNewMovies(NewRecommendationRequest request){
         FindIterable<Document> documents = getMovieCollection().find().sort(Sorts.descending("issue")).limit(request.getSum());
-        List<Movie> movies = new ArrayList<>();
+        List<Insurance> movies = new ArrayList<>();
         for (Document document: documents) {
             movies.add(documentToMovie(document));
         }

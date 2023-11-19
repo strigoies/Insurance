@@ -25,21 +25,22 @@ public class OrderService {
 
     @Autowired
     private MongoClient mongoClient;
+    @Autowired
+    private MovieService movieService;
 
-    private ObjectMapper objectMapper;
+    private ObjectMapper objectMapper = new ObjectMapper();
 
     private MongoCollection<Document> orderCollection;
 
     private MongoCollection<Document> getOrderCollection(){
         if (null == orderCollection)
-            orderCollection = mongoClient.getDatabase(Constant.MONGODB_DATABASE).getCollection(Constant.MONGODB_ORDER_COLLECTION);
+            orderCollection = mongoClient.getDatabase(Constant.MONGODB_RECOMMENDER_DATABASE).getCollection(Constant.MONGODB_ORDER_COLLECTION);
         return orderCollection;
     }
 
     public boolean createOrder(OrderRequest request){
         //TODO:因表结构设计改变，功能还没适配
         Order order = new Order();
-        MovieService movieService = new MovieService();
         order.setCustomer_id(request.getUid());
         Document insurance = movieService.getMovieCollection().find(Filters.eq("mid",request.getMid())).first();
         order.setAmount(insurance.get("price",0D));
@@ -54,7 +55,7 @@ public class OrderService {
     }
 
     public Order findOrder(int uid){
-        Document order = getOrderCollection().find(Filters.eq("uid",uid)).first();
+        Document order = getOrderCollection().find(Filters.eq("customer_id",uid)).first();
         if (null == order || order.isEmpty()){
             return null;
         }

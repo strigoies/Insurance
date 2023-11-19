@@ -32,7 +32,7 @@ public class UserService {
 
     private MongoCollection<Document> getUserCollection(){
         if(null == userCollection)
-            userCollection = mongoClient.getDatabase(Constant.MONGODB_DATABASE).getCollection(Constant.MONGODB_USER_COLLECTION);
+            userCollection = mongoClient.getDatabase(Constant.MONGODB_RECOMMENDER_DATABASE).getCollection(Constant.MONGODB_USER_COLLECTION);
         return userCollection;
     }
 
