@@ -33,6 +33,7 @@ public class Movie {
     private String period;//周期
 
     private String scope;//保障范围
+    private int count;//
 
     public String getUrl() {
         return url;
@@ -129,4 +130,13 @@ public class Movie {
     public void setPrice(double price) {
         this.price = price;
     }
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
+    }
+
 }
