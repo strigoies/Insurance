@@ -5,8 +5,15 @@ public class MovieRecommendationRequest {
 
     private int sum;
 
+    private String descri;
+
     public MovieRecommendationRequest(int mid, int sum) {
         this.mid = mid;
+        this.sum = sum;
+    }
+
+    public MovieRecommendationRequest(String descri, int sum) {
+        this.descri = descri;
         this.sum = sum;
     }
 
@@ -24,5 +31,14 @@ public class MovieRecommendationRequest {
 
     public void setMid(int mid) {
         this.mid = mid;
+    }
+
+
+    public String getDescri() {
+        return descri;
+    }
+
+    public void setDescri(String descri) {
+        this.descri = descri;
     }
 }
