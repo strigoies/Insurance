@@ -24,9 +24,9 @@ public class OrderRestApi {
     public Model createOrder(@RequestParam("uid")int uid,@RequestParam("mid")int mid,Model model){
         //创建订单
         if (orderService.createOrder(new OrderRequest(uid,mid)))
-            model.addAttribute("success");
+            model.addAttribute("success", true);
         else
-            model.addAttribute("false");
+            model.addAttribute("success", false);
         return model;
     }
     //删除订单
@@ -37,10 +37,11 @@ public class OrderRestApi {
     public Model findOrder(@RequestParam("uid")int uid,Model model){
         //查询订单
         Order order = orderService.findOrder(uid);
-        if (order.isEmpty()){
-            model.addAttribute("false");
+        if (order == null){
+            model.addAttribute("success", false);
+        } else {
+            model.addAttribute("success",true);
         }
-        model.addAttribute("success",true);
         model.addAttribute("order",order);
         return model;
     }
