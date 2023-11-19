@@ -2,12 +2,7 @@ package com.atguigu.business.model.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
-public class Movie {
+public class Insurance {
 
     @JsonIgnore
     private String _id;
