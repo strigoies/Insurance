@@ -49,12 +49,14 @@ public class MovieRestApi {
     public Model getGuessMovies(@RequestParam("username")String username,@RequestParam("num")int num, Model model) {
         User user = userService.findByUsername(username);
         List<Recommendation> recommendations = recommenderService.getHybridRecommendations(new MovieHybridRecommendationRequest(user.getUid(),num));
-        if(recommendations.size()==0){
-            String randomGenres = user.getPrefGenres().get(new Random().nextInt(user.getPrefGenres().size()));
-            recommendations = recommenderService.getTopGenresRecommendations(new TopGenresRecommendationRequest(randomGenres.split(" ")[0],num));
+        if(recommendations.isEmpty()){
+            if (!user.getPrefGenres().isEmpty()) {
+                String randomGenres = user.getPrefGenres().get(new Random().nextInt(user.getPrefGenres().size()));
+                recommendations = recommenderService.getTopGenresRecommendations(new TopGenresRecommendationRequest(randomGenres.split(" ")[0],num));
+            }
         }
         model.addAttribute("success",true);
-        model.addAttribute("movies",movieService.getHybirdRecommendeMovies(recommendations));
+        model.addAttribute("insurances",movieService.getHybirdRecommendeMovies(recommendations));
         return model;
     }
 
@@ -66,18 +68,25 @@ public class MovieRestApi {
     @ResponseBody
     public Model getWishMovies(@RequestParam("username")String username,@RequestParam("num")int num, Model model) throws UnsupportedEncodingException {
         User user = userService.findByUsername(username);
-        //获取用户协同过滤结果
-        List<Recommendation> recommendations = recommenderService.getCollaborativeFilteringRecommendations(new UserRecommendationRequest(user.getUid(),num));
-        //没有协同过滤结果的情况下，获取用户偏好
-        if(recommendations.size()==0){
-            //query= new String(user.getPrefGenres().getBytes("ISO8859-1"),"UTF-8");
-            System.out.println("保险条款"+user.getPrefGenres());
-            String randomGenres = user.getPrefGenres().get(new Random().nextInt(user.getPrefGenres().size()));
-            recommendations = recommenderService.getTopGenresRecommendations(new TopGenresRecommendationRequest(randomGenres.split(" ")[0],num));
-            System.out.println("/wish离线推荐"+recommendations.size());
+        if (user != null) {
+            //获取用户协同过滤结果
+            List<Recommendation> recommendations = recommenderService.getCollaborativeFilteringRecommendations(new UserRecommendationRequest(user.getUid(), num));
+            //没有协同过滤结果的情况下，获取用户偏好
+            if (recommendations.isEmpty()) {
+                if (!user.getPrefGenres().isEmpty()) {
+                    //query= new String(user.getPrefGenres().getBytes("ISO8859-1"),"UTF-8");
+                    System.out.println("保险条款" + user.getPrefGenres());
+                    String randomGenres = user.getPrefGenres().get(new Random().nextInt(user.getPrefGenres().size()));
+                    recommendations = recommenderService.getTopGenresRecommendations(new TopGenresRecommendationRequest(randomGenres.split(" ")[0], num));
+                    System.out.println("/wish离线推荐" + recommendations.size());
+                }
+            }
+            model.addAttribute("success", true);
+            model.addAttribute("insurances", movieService.getRecommendeMovies(recommendations));
+        } else{
+            model.addAttribute("success", false);
+            model.addAttribute("reason", "用户不存在");
         }
-        model.addAttribute("success",true);
-        model.addAttribute("movies",movieService.getRecommendeMovies(recommendations));
         return model;
     }
 
@@ -90,7 +99,7 @@ public class MovieRestApi {
     public Model getHotMovies(@RequestParam("num")int num, Model model) {
         List<Recommendation> recommendations = recommenderService.getHotRecommendations(new HotRecommendationRequest(num));
         model.addAttribute("success",true);
-        model.addAttribute("movies",movieService.getRecommendeMovies(recommendations));
+        model.addAttribute("insurances",movieService.getRecommendeMovies(recommendations));
         return model;
     }
 
@@ -102,7 +111,7 @@ public class MovieRestApi {
     @ResponseBody
     public Model getNewMovies(@RequestParam("num")int num, Model model) {
         model.addAttribute("success",true);
-        model.addAttribute("movies",movieService.getNewMovies(new NewRecommendationRequest(num)));
+        model.addAttribute("insurances",movieService.getNewMovies(new NewRecommendationRequest(num)));
         return model;
     }
 
@@ -111,12 +120,13 @@ public class MovieRestApi {
      * 逻辑：使用ES的相关查询方法
      * 获取电影详细页面相似的电影集合
      */
-    @RequestMapping(value = "/same/{id}", produces = "application/json", method = RequestMethod.GET )
+    @RequestMapping(value = "/same", produces = "application/json", method = RequestMethod.GET )
     @ResponseBody
-    public Model getSameMovie(@PathVariable("id")int id,@RequestParam("num")int num, Model model) {
-        List<Recommendation> recommendations = recommenderService.getContentBasedMoreLikeThisRecommendations(new MovieRecommendationRequest(id,num));
-        model.addAttribute("success",true);
-        model.addAttribute("movies",movieService.getRecommendeMovies(recommendations));
+    public Model getSameMovie(@RequestParam("descri")String descri,@RequestParam("num")int num, Model model) throws UnsupportedEncodingException {
+        descri = new String(descri.getBytes("ISO8859-1"),"UTF-8");
+        List<Recommendation> recommendations = recommenderService.getContentBasedMoreLikeThisRecommendations(new MovieRecommendationRequest(descri,num));
+        model.addAttribute("success",false);
+        model.addAttribute("insurances",movieService.getRecommendeMovies(recommendations));
         return model;
     }
 
@@ -128,7 +138,7 @@ public class MovieRestApi {
     @ResponseBody
     public Model getMovieInfo(@PathVariable("id")int id, Model model) {
         model.addAttribute("success",true);
-        model.addAttribute("movie",movieService.findByMID(id));
+        model.addAttribute("insurance",movieService.findByMID(id));
         movieService.AddClick(id);
         return model;
     }
@@ -143,7 +153,7 @@ public class MovieRestApi {
         query= new String(query.getBytes("ISO8859-1"),"UTF-8");
         List<Recommendation> recommendations = recommenderService.getContentBasedSearchRecommendations(new SearchRecommendationRequest(query,num));
         model.addAttribute("success",true);
-        model.addAttribute("movies",movieService.getRecommendeMovies(recommendations));
+        model.addAttribute("insurances",movieService.getRecommendeMovies(recommendations));
         return model;
     }
 
@@ -156,7 +166,8 @@ public class MovieRestApi {
     public Model getGenresMovies(@RequestParam("category")String category,@RequestParam("num")int num, Model model) throws UnsupportedEncodingException {
         category= new String(category.getBytes("ISO8859-1"),"UTF-8");
         List<Recommendation> recommendations = recommenderService.getContentBasedGenresRecommendations(new SearchRecommendationRequest(category,num));
-        model.addAttribute("movies",movieService.getRecommendeMovies(recommendations));
+        model.addAttribute("success",true);
+        model.addAttribute("insurances",movieService.getRecommendeMovies(recommendations));
         return model;
     }
 
@@ -180,7 +191,7 @@ public class MovieRestApi {
 //    public Model getRateMoreMovies(@RequestParam("num")int num, Model model) {
 //        List<Recommendation> recommendations = recommenderService.getRateMoreRecommendations(new RateMoreRecommendationRequest(num));
 //        model.addAttribute("success",true);
-//        model.addAttribute("movies",movieService.getRecommendeMovies(recommendations));
+//        model.addAttribute("insurances",movieService.getRecommendeMovies(recommendations));
 //        return model;
 //    }
 //
@@ -195,7 +206,7 @@ public class MovieRestApi {
 //    public Model getMyRateMovies(@RequestParam("username")String username, Model model) {
 //        User user = userService.findByUsername(username);
 //        model.addAttribute("success",true);
-//        model.addAttribute("movies",movieService.getMyRateMovies(user.getUid()));
+//        model.addAttribute("insurances",movieService.getMyRateMovies(user.getUid()));
 //        return model;
 //    }
 //
