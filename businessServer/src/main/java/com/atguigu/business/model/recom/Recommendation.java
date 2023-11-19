@@ -8,12 +8,12 @@ public class Recommendation {
     // 电影ID
     private int mid;
 
-    // 电影的推荐得分
-    private Double score;
+    // 保险点击量
+    private double count;
 
-    public Recommendation(int mid, Double score) {
+    public Recommendation(int mid, double count) {
         this.mid = mid;
-        this.score = score;
+        this.count = count;
     }
 
     public int getMid() {
@@ -24,11 +24,11 @@ public class Recommendation {
         this.mid = mid;
     }
 
-    public Double getScore() {
-        return score;
+    public double getCount() {
+        return count;
     }
 
-    public void setScore(Double score) {
-        this.score = score;
+    public void setCount(double count) {
+        this.count = count;
     }
 }
