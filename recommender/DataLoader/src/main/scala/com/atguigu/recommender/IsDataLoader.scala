@@ -1,10 +1,8 @@
 package com.atguigu.recommender
 
-
-import com.mongodb.casbah.commons.MongoDBObject
-import com.mongodb.casbah.{MongoClient, MongoClientURI}
-import org.apache.spark.{SparkConf, sql}
 import org.apache.spark.sql.{DataFrame, SparkSession}
+import org.bson.Document
+import org.elasticsearch.spark.sparkRDDFunctions
 
 
 /**
@@ -41,68 +39,38 @@ case class Insurance(mid:Int,name:String,descri:String,issue:String,genres:Strin
 object IsDataLoader {
 
   // 定义常量
-  val INSURANCE_DATA_PATH = "E:\\SK-Project\\Fusion\\RecommendSystem-baoxian\\MovieRecommendSystem\\recommender\\DataLoader\\src\\main\\resources\\insurance_test.csv"
-  val MONGODB_INSURANCE_COLLECTION = "Insurance"
-  val ES_INSURANCE_INDEX = "Insurance"
+  val MOVIE_DATA_PATH = "E:\\SK-Project\\Fusion\\RecommendSystem-baoxian\\MovieRecommendSystem\\recommender\\DataLoader\\src\\main\\resources\\insurance_test.csv"
 
   def main(args: Array[String]): Unit = {
 
+    val spark = SparkSession
+      .builder()
+      .appName("WriteToES")
+      .master("local[*]")
+      .config("spark.es.nodes", "192.168.50.26")
+      .config("spark.es.port", "9200")
+      .config("spark.es.nodes.wan.only", "true") // Needed for ES on AWS
+      .config("spark.es.net.http.auth.user", "elastic")
+      .config("spark.es.net.http.auth.pass", "root@123")
+      .getOrCreate()
 
-    val config = Map(
-      "spark.cores" -> "local[*]",
-      "mongo.uri" -> "mongodb://192.168.50.26:27017/Insurance",
-      "mongo.db" -> "test",
-      "es.httpHosts" -> "192.168.50.26:9200",
-      "es.transportHosts" -> "192.168.50.26:9300",
-      "es.index" -> "recommender",
-      "es.cluster.name" -> "elasticsearch"
-    )
-
-    // 创建一个sparkConf
-    val sparkConf = new SparkConf().setMaster(config("spark.cores")).setAppName("DataLoader")
-
-    // 创建一个SparkSession
-    val spark = SparkSession.builder().config(sparkConf).getOrCreate()
+    // 加载数据
+    val movieRDD = spark.sparkContext.textFile(MOVIE_DATA_PATH)
 
     import spark.implicits._
 
-    // 加载数据
-    val insuranceRDD = spark.sparkContext.textFile(INSURANCE_DATA_PATH)
-
-    val insuranceDF = insuranceRDD.map(
-      item => {
-        val attr = item.split("\\^")
-        Insurance(attr(0).toInt, attr(1).trim, attr(2).trim, attr(3).trim, attr(4).trim, attr(5).toDouble, attr(6).trim, attr(7).trim, attr(8).trim, attr(9).trim,attr(10).trim)
+    val documents = movieRDD.map(line => {
+      val str = scala.util.Random.nextInt(5000).toString
+      val data = line.split("\\^")
+      if (data.length == 1) {
+        Document.parse(s"""{"test": "${data(0)}"}""")
+      } else {
+        Document.parse(s"""{"mid": ${data(0).toInt}, "price": ${data(1).toDouble}, "issue": "${data(2).trim}", "name": "${data(3).trim}", "descri": "${data(4).trim}", "genres": "${data(5).trim}", "status": "${data(6).trim}", "url": "${data(7).trim}", "age": "${data(8).trim}", "period": "${data(9).trim}", "scope": "${data(10).trim}","count":"${str.toInt}"}""")
       }
-    ).toDF()
+    })
 
-    println(insuranceDF)
+    documents.saveToEs("insurance")
 
-    implicit val mongoConfig = MongoConfig(config("mongo.uri"), config("mongo.db"))
-
-    // 将数据保存到MongoDB
-    storeDataInMongoDB(insuranceDF)
-    spark.close()
-  }
-
-  def storeDataInMongoDB(insuranceDF: DataFrame)(implicit mongoConfig: MongoConfig): Unit = {
-    val mongoClient = MongoClient(MongoClientURI(mongoConfig.uri))
-
-    //如果已有相应数据库，先删除
-    mongoClient(mongoConfig.db)(MONGODB_INSURANCE_COLLECTION).dropCollection()
-
-    //将DF数据写入对应mongodb表中
-    insuranceDF.write
-      .option("uri",mongoConfig.uri)
-      .option("database",MONGODB_INSURANCE_COLLECTION)
-      .option("collection",MONGODB_INSURANCE_COLLECTION)
-      .mode("overwrite")
-      .format("com.mongodb.spark,sql")
-      .save()
-
-    //建索引
-    mongoClient(mongoConfig.db)(MONGODB_INSURANCE_COLLECTION).createIndex(MongoDBObject("mid" -> 1))
-
-    mongoClient.close()
+    spark.stop()
   }
 }

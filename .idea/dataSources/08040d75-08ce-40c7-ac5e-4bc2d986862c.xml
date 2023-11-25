@@ -10,167 +10,207 @@
     <schema id="5" parent="1" name="local"/>
     <schema id="6" parent="1" name="recommender"/>
     <schema id="7" parent="1" name="test_db"/>
-    <table id="8" parent="2" name="GenresTopInsurances"/>
-    <table id="9" parent="2" name="Insurance"/>
+    <table id="8" parent="2" name="Authentication"/>
+    <table id="9" parent="2" name="GenresTopInsurances"/>
     <table id="10" parent="2" name="RateMoreRecentlyInsurances"/>
-    <table id="11" parent="2" name="UserRecs"/>
+    <table id="11" parent="6" name="Authentication"/>
     <table id="12" parent="6" name="Order"/>
     <table id="13" parent="6" name="User"/>
     <column id="14" parent="8" name="_id">
       <DasType>ObjectId|12s</DasType>
       <Position>1</Position>
     </column>
-    <column id="15" parent="8" name="genres">
+    <column id="15" parent="8" name="insuranceExceptIdNumber">
       <DasType>String|12s</DasType>
       <Position>1</Position>
     </column>
-    <column id="16" parent="8" name="recs">
+    <column id="16" parent="8" name="relationShip">
+      <DasType>String|12s</DasType>
+      <Position>1</Position>
+    </column>
+    <column id="17" parent="8" name="uid">
+      <DasType>Int32|4s</DasType>
+      <Position>2</Position>
+    </column>
+    <column id="18" parent="8" name="insuranceExceptLicenseType">
+      <DasType>String|12s</DasType>
+      <Position>2</Position>
+    </column>
+    <column id="19" parent="8" name="insuranceExceptName">
+      <DasType>String|12s</DasType>
+      <Position>3</Position>
+    </column>
+    <column id="20" parent="8" name="insuranceExceptPhoneNumber">
+      <DasType>String|12s</DasType>
+      <Position>4</Position>
+    </column>
+    <column id="21" parent="8" name="insuranceExceptRemark">
+      <DasType>String|12s</DasType>
+      <Position>5</Position>
+    </column>
+    <column id="22" parent="8" name="insuranceHolderIdNumber">
+      <DasType>String|12s</DasType>
+      <Position>6</Position>
+    </column>
+    <column id="23" parent="8" name="insuranceHolderIssue">
+      <DasType>String|12s</DasType>
+      <Position>7</Position>
+    </column>
+    <column id="24" parent="8" name="insuranceHolderLicenseType">
+      <DasType>String|12s</DasType>
+      <Position>8</Position>
+    </column>
+    <column id="25" parent="8" name="insuranceHolderName">
+      <DasType>String|12s</DasType>
+      <Position>9</Position>
+    </column>
+    <column id="26" parent="8" name="insuranceHolderPhoneNumber">
+      <DasType>String|12s</DasType>
+      <Position>10</Position>
+    </column>
+    <column id="27" parent="8" name="insuranceHolderRemark">
+      <DasType>String|12s</DasType>
+      <Position>11</Position>
+    </column>
+    <column id="28" parent="9" name="_id">
+      <DasType>ObjectId|12s</DasType>
+      <Position>1</Position>
+    </column>
+    <column id="29" parent="9" name="genres">
+      <DasType>String|12s</DasType>
+      <Position>1</Position>
+    </column>
+    <column id="30" parent="9" name="recs">
       <DasType>Array|2003s</DasType>
       <Position>1</Position>
     </column>
-    <column id="17" parent="9" name="_id">
+    <column id="31" parent="10" name="_id">
       <DasType>ObjectId|12s</DasType>
       <Position>1</Position>
     </column>
-    <column id="18" parent="9" name="age">
-      <DasType>String|12s</DasType>
-      <Position>1</Position>
-    </column>
-    <column id="19" parent="9" name="mid">
+    <column id="32" parent="10" name="count">
       <DasType>Int32|4s</DasType>
       <Position>1</Position>
     </column>
-    <column id="20" parent="9" name="count">
+    <column id="33" parent="10" name="mid">
+      <DasType>Int32|4s</DasType>
+      <Position>1</Position>
+    </column>
+    <column id="34" parent="11" name="_id">
+      <DasType>ObjectId|12s</DasType>
+      <Position>1</Position>
+    </column>
+    <column id="35" parent="11" name="insuranceExceptIdNumber">
       <DasType>String|12s</DasType>
       <Position>1</Position>
     </column>
-    <column id="21" parent="9" name="scope">
+    <column id="36" parent="11" name="relationShip">
       <DasType>String|12s</DasType>
       <Position>1</Position>
     </column>
-    <column id="22" parent="9" name="url">
-      <DasType>String|12s</DasType>
+    <column id="37" parent="11" name="uid">
+      <DasType>Int32|4s</DasType>
       <Position>1</Position>
     </column>
-    <column id="23" parent="9" name="issue">
-      <DasType>String|12s</DasType>
-      <Position>1</Position>
-    </column>
-    <column id="24" parent="9" name="descri">
+    <column id="38" parent="11" name="insuranceExceptLicenseType">
       <DasType>String|12s</DasType>
       <Position>2</Position>
     </column>
-    <column id="25" parent="9" name="name">
-      <DasType>String|12s</DasType>
-      <Position>2</Position>
-    </column>
-    <column id="26" parent="9" name="status">
-      <DasType>String|12s</DasType>
-      <Position>2</Position>
-    </column>
-    <column id="27" parent="9" name="genres">
+    <column id="39" parent="11" name="insuranceExceptName">
       <DasType>String|12s</DasType>
       <Position>3</Position>
     </column>
-    <column id="28" parent="9" name="period">
+    <column id="40" parent="11" name="insuranceExceptPhoneNumber">
       <DasType>String|12s</DasType>
-      <Position>3</Position>
-    </column>
-    <column id="29" parent="9" name="price">
-      <DasType>Double|8s</DasType>
       <Position>4</Position>
     </column>
-    <column id="30" parent="10" name="_id">
-      <DasType>ObjectId|12s</DasType>
-      <Position>1</Position>
-    </column>
-    <column id="31" parent="10" name="count">
-      <DasType>Int32|4s</DasType>
-      <Position>1</Position>
-    </column>
-    <column id="32" parent="10" name="mid">
+    <column id="41" parent="11" name="insuranceExceptRemark">
       <DasType>String|12s</DasType>
-      <Position>1</Position>
+      <Position>5</Position>
     </column>
-    <column id="33" parent="11" name="_id">
+    <column id="42" parent="11" name="insuranceHolderIdNumber">
+      <DasType>String|12s</DasType>
+      <Position>6</Position>
+    </column>
+    <column id="43" parent="11" name="insuranceHolderIssue">
+      <DasType>String|12s</DasType>
+      <Position>7</Position>
+    </column>
+    <column id="44" parent="11" name="insuranceHolderLicenseType">
+      <DasType>String|12s</DasType>
+      <Position>8</Position>
+    </column>
+    <column id="45" parent="11" name="insuranceHolderName">
+      <DasType>String|12s</DasType>
+      <Position>9</Position>
+    </column>
+    <column id="46" parent="11" name="insuranceHolderPhoneNumber">
+      <DasType>String|12s</DasType>
+      <Position>10</Position>
+    </column>
+    <column id="47" parent="11" name="insuranceHolderRemark">
+      <DasType>String|12s</DasType>
+      <Position>11</Position>
+    </column>
+    <column id="48" parent="12" name="_id">
       <DasType>ObjectId|12s</DasType>
       <Position>1</Position>
     </column>
-    <column id="34" parent="11" name="recs">
-      <DasType>list|4999545s</DasType>
-      <Position>1</Position>
-    </column>
-    <column id="35" parent="11" name="uid">
-      <DasType>Int32|4s</DasType>
-      <Position>1</Position>
-    </column>
-    <column id="36" parent="11" name="recs.count">
-      <DasType>Int32|4s</DasType>
-      <Position>1</Position>
-    </column>
-    <column id="37" parent="11" name="recs.mid">
-      <DasType>Int32|4s</DasType>
-      <Position>2</Position>
-    </column>
-    <column id="38" parent="12" name="_id">
-      <DasType>ObjectId|12s</DasType>
-      <Position>1</Position>
-    </column>
-    <column id="39" parent="12" name="amount">
+    <column id="49" parent="12" name="amount">
       <DasType>Double|8s</DasType>
       <Position>1</Position>
     </column>
-    <column id="40" parent="12" name="insurance_id">
+    <column id="50" parent="12" name="insurance_id">
       <DasType>Int32|4s</DasType>
       <Position>1</Position>
     </column>
-    <column id="41" parent="12" name="payment_type">
+    <column id="51" parent="12" name="payment_type">
       <DasType>String|12s</DasType>
       <Position>1</Position>
     </column>
-    <column id="42" parent="12" name="status">
+    <column id="52" parent="12" name="status">
       <DasType>String|12s</DasType>
       <Position>1</Position>
     </column>
-    <column id="43" parent="12" name="code">
+    <column id="53" parent="12" name="code">
       <DasType>String|12s</DasType>
       <Position>2</Position>
     </column>
-    <column id="44" parent="12" name="create_time">
+    <column id="54" parent="12" name="create_time">
       <DasType>String|12s</DasType>
       <Position>3</Position>
     </column>
-    <column id="45" parent="12" name="customer_id">
+    <column id="55" parent="12" name="customer_id">
       <DasType>Int32|4s</DasType>
       <Position>4</Position>
     </column>
-    <column id="46" parent="13" name="_id">
+    <column id="56" parent="13" name="_id">
       <DasType>ObjectId|12s</DasType>
       <Position>1</Position>
     </column>
-    <column id="47" parent="13" name="first">
+    <column id="57" parent="13" name="first">
       <DasType>Boolean|12s</DasType>
       <Position>1</Position>
     </column>
-    <column id="48" parent="13" name="password">
+    <column id="58" parent="13" name="password">
       <DasType>String|12s</DasType>
       <Position>1</Position>
     </column>
-    <column id="49" parent="13" name="prefGenres">
+    <column id="59" parent="13" name="prefGenres">
       <DasType>list|4999545s</DasType>
       <Position>1</Position>
     </column>
-    <column id="50" parent="13" name="timestamp">
+    <column id="60" parent="13" name="timestamp">
       <DasType>Int64|12s</DasType>
       <Position>1</Position>
     </column>
-    <column id="51" parent="13" name="uid">
-      <DasType>Int32|4s</DasType>
-      <Position>2</Position>
-    </column>
-    <column id="52" parent="13" name="username">
+    <column id="61" parent="13" name="username">
       <DasType>String|12s</DasType>
-      <Position>3</Position>
+      <Position>1</Position>
+    </column>
+    <column id="62" parent="13" name="uid">
+      <DasType>Double|8s</DasType>
+      <Position>2</Position>
     </column>
   </database-model>
 </dataSource>

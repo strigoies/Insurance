@@ -5,6 +5,7 @@ import com.atguigu.business.model.domain.User;
 import com.atguigu.business.model.request.LoginUserRequest;
 import com.atguigu.business.model.request.RegisterUserRequest;
 import com.atguigu.business.service.UserService;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -61,7 +62,7 @@ public class UserRestApi {
 
     //实名信息
     @RequestMapping(value = "/real-name",produces = "application/json",method = RequestMethod.POST)
-    public  Model authentication(@RequestBody Authentication authentication,Model model){
+    public  Model authentication(@RequestBody Authentication authentication,Model model) throws JsonProcessingException {
         //将json存到mongodb
         model.addAttribute("success",userService.updateAuthentication(authentication));
         return model;

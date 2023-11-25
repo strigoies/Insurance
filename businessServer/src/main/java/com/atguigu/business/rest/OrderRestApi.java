@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.List;
+
 
 @RequestMapping("/rest/orders")
 @Controller
@@ -32,17 +34,18 @@ public class OrderRestApi {
     //删除订单
 
     //修改订单
+
     @RequestMapping(value = "find-order",produces = "application/json",method = RequestMethod.GET)
     @ResponseBody
     public Model findOrder(@RequestParam("uid")int uid,Model model){
         //查询订单
-        Order order = orderService.findOrder(uid);
-        if (order == null){
+        List<Order> orders = orderService.findOrder(uid);
+        if (orders == null){
             model.addAttribute("success", false);
         } else {
             model.addAttribute("success",true);
         }
-        model.addAttribute("order",order);
+        model.addAttribute("order",orders);
         return model;
     }
 }

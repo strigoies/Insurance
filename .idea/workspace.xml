@@ -10,12 +10,82 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ad15df8b-8e7a-4a01-b88b-6db965613286" name="Default" comment="更新es连接客户端创建方法">
-      <change afterPath="$PROJECT_DIR$/recommender/DataLoader/src/main/scala/com/atguigu/recommender/EsDataLoader.scala" afterDir="false" />
+    <list default="true" id="ad15df8b-8e7a-4a01-b88b-6db965613286" name="Default" comment="修改es连接为http，取消ssl">
+      <change afterPath="$PROJECT_DIR$/businessServer/src/test/java/com/atguigu/business/service/OrderFindTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/08040d75-08ce-40c7-ac5e-4bc2d986862c.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/08040d75-08ce-40c7-ac5e-4bc2d986862c.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/businessServer/src/main/java/com/atguigu/business/utils/Constant.java" beforeDir="false" afterPath="$PROJECT_DIR$/businessServer/src/main/java/com/atguigu/business/utils/Constant.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/businessServer/target/classes/recommend.properties" beforeDir="false" afterPath="$PROJECT_DIR$/businessServer/target/classes/recommend.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/businessServer/src/main/java/com/atguigu/business/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/businessServer/src/main/java/com/atguigu/business/Application.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/businessServer/src/main/java/com/atguigu/business/rest/OrderRestApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/businessServer/src/main/java/com/atguigu/business/rest/OrderRestApi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/businessServer/src/main/java/com/atguigu/business/rest/UserRestApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/businessServer/src/main/java/com/atguigu/business/rest/UserRestApi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/businessServer/src/main/java/com/atguigu/business/service/OrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/businessServer/src/main/java/com/atguigu/business/service/OrderService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/businessServer/src/main/java/com/atguigu/business/service/TagService.java" beforeDir="false" afterPath="$PROJECT_DIR$/businessServer/src/main/java/com/atguigu/business/service/TagService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/businessServer/src/main/java/com/atguigu/business/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/businessServer/src/main/java/com/atguigu/business/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/classes/com/atguigu/business/Application.class" beforeDir="false" afterPath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/classes/com/atguigu/business/Application.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/classes/com/atguigu/business/model/recom/Recommendation.class" beforeDir="false" afterPath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/classes/com/atguigu/business/model/recom/Recommendation.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/classes/com/atguigu/business/model/request/MovieRecommendationRequest.class" beforeDir="false" afterPath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/classes/com/atguigu/business/model/request/MovieRecommendationRequest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/classes/com/atguigu/business/rest/MovieRestApi.class" beforeDir="false" afterPath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/classes/com/atguigu/business/rest/MovieRestApi.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/classes/com/atguigu/business/rest/UserRestApi.class" beforeDir="false" afterPath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/classes/com/atguigu/business/rest/UserRestApi.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/classes/com/atguigu/business/service/MovieService.class" beforeDir="false" afterPath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/classes/com/atguigu/business/service/MovieService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/classes/com/atguigu/business/service/RecommenderService$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/classes/com/atguigu/business/service/RecommenderService$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/classes/com/atguigu/business/service/RecommenderService$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/classes/com/atguigu/business/service/RecommenderService$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/classes/com/atguigu/business/service/RecommenderService.class" beforeDir="false" afterPath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/classes/com/atguigu/business/service/RecommenderService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/classes/com/atguigu/business/service/TagService.class" beforeDir="false" afterPath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/classes/com/atguigu/business/service/TagService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/classes/com/atguigu/business/service/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/classes/com/atguigu/business/service/UserService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/classes/com/atguigu/business/utils/Configure.class" beforeDir="false" afterPath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/classes/com/atguigu/business/utils/Configure.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/classes/com/atguigu/business/utils/Constant.class" beforeDir="false" afterPath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/classes/com/atguigu/business/utils/Constant.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/classes/recommend.properties" beforeDir="false" afterPath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/classes/recommend.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/lib/HdrHistogram-2.1.9.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/lib/commons-codec-1.10.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/lib/compiler-0.9.3.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/lib/elasticsearch-5.6.2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/lib/elasticsearch-rest-client-5.6.2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/lib/hppc-0.7.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/lib/httpasyncclient-4.1.2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/lib/httpclient-4.5.2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/lib/httpcore-4.4.5.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/lib/httpcore-nio-4.4.5.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/lib/jackson-dataformat-cbor-2.8.6.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/lib/jackson-dataformat-smile-2.8.6.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/lib/jackson-dataformat-yaml-2.8.6.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/lib/jna-4.4.0-1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/lib/joda-time-2.9.5.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/lib/jopt-simple-5.0.2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/lib/lang-mustache-client-5.6.2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/lib/lucene-analyzers-common-6.6.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/lib/lucene-backward-codecs-6.6.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/lib/lucene-core-6.6.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/lib/lucene-grouping-6.6.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/lib/lucene-highlighter-6.6.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/lib/lucene-join-6.6.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/lib/lucene-memory-6.6.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/lib/lucene-misc-6.6.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/lib/lucene-queries-6.6.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/lib/lucene-queryparser-6.6.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/lib/lucene-sandbox-6.6.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/lib/lucene-spatial-6.6.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/lib/lucene-spatial-extras-6.6.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/lib/lucene-spatial3d-6.6.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/lib/lucene-suggest-6.6.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/lib/netty-3.10.6.Final.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/lib/netty-buffer-4.1.13.Final.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/lib/netty-codec-4.1.13.Final.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/lib/netty-codec-http-4.1.13.Final.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/lib/netty-common-4.1.13.Final.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/lib/netty-handler-4.1.13.Final.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/lib/netty-resolver-4.1.13.Final.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/lib/netty-transport-4.1.13.Final.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/lib/parent-join-client-5.6.2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/lib/percolator-client-5.6.2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/lib/reindex-client-5.6.2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/lib/securesm-1.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/lib/snakeyaml-1.15.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/lib/t-digest-3.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/lib/transport-5.6.2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/lib/transport-netty3-client-5.6.2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/lib/transport-netty4-client-5.6.2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/businessServer/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/businessServer/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/businessServer/target/test-classes/com/atguigu/business/service/MovieServiceTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/businessServer/target/test-classes/com/atguigu/business/service/MovieServiceTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/recommender/DataLoader/src/main/resources/insurance_test.csv" beforeDir="false" afterPath="$PROJECT_DIR$/recommender/DataLoader/src/main/resources/insurance_test.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/recommender/DataLoader/src/main/scala/com/atguigu/recommender/IsDataLoader.scala" beforeDir="false" afterPath="$PROJECT_DIR$/recommender/DataLoader/src/main/scala/com/atguigu/recommender/IsDataLoader.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/recommender/DataLoader/target/classes/com/atguigu/recommender/ESConfig$.class" beforeDir="false" afterPath="$PROJECT_DIR$/recommender/DataLoader/target/classes/com/atguigu/recommender/ESConfig$.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/recommender/DataLoader/target/classes/com/atguigu/recommender/ESConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/recommender/DataLoader/target/classes/com/atguigu/recommender/ESConfig.class" afterDir="false" />
@@ -526,7 +596,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "E:/Project/Java/test-database",
+    "last_opened_file_path": "E:/SK-Project/Fusion/RecommendSystem",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -548,17 +618,17 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\SK-Project\Fusion\RecommendSystem-baoxian\MovieRecommendSystem\businessServer\src\main" />
       <recent name="F:\推荐系统\MovieRecommendSystem\recommender\DataLoader\src\main\resources" />
       <recent name="D:\Projects\BigData\MovieRecommendSystem\recommender\KafkaStream\src\main\resources" />
       <recent name="D:\Projects\BigData\MovieRecommendSystem\recommender\ContentRecommender\src\main\resources" />
       <recent name="D:\Projects\BigData\MovieRecommendSystem\recommender\KafkaStreaming\src\main\resources" />
-      <recent name="D:\Projects\BigData\MovieRecommendSystem\recommender\StreamingRecommender\src\main\resources" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="com.atguigu.business" />
     </key>
   </component>
-  <component name="RunManager" selected="Maven.businessServer [tomcat7:run]">
+  <component name="RunManager" selected="JUnit.OrderFindTest">
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="WIDTH" value="400" />
       <option name="HEIGHT" value="300" />
@@ -579,27 +649,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="IsDataLoader" type="Application" factoryName="Application" temporary="true">
-      <option name="MAIN_CLASS_NAME" value="com.atguigu.recommender.IsDataLoader" />
-      <module name="DataLoader" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.atguigu.recommender.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration default="true" type="Application" factoryName="Application">
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="EsTest.esConnectTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="OrderFindTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="businessServer" />
       <extension name="coverage">
         <pattern>
@@ -608,15 +664,14 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.atguigu.business.service" />
-      <option name="MAIN_CLASS_NAME" value="com.atguigu.business.service.EsTest" />
-      <option name="METHOD_NAME" value="esConnectTest" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="MAIN_CLASS_NAME" value="com.atguigu.business.service.OrderFindTest" />
+      <option name="TEST_OBJECT" value="class" />
       <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MovieServiceTest.test2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="OrderFindTest.mongodbTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="businessServer" />
       <extension name="coverage">
         <pattern>
@@ -625,8 +680,8 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.atguigu.business.service" />
-      <option name="MAIN_CLASS_NAME" value="com.atguigu.business.service.MovieServiceTest" />
-      <option name="METHOD_NAME" value="test2" />
+      <option name="MAIN_CLASS_NAME" value="com.atguigu.business.service.OrderFindTest" />
+      <option name="METHOD_NAME" value="mongodbTest" />
       <option name="TEST_OBJECT" value="method" />
       <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
       <method v="2">
@@ -664,6 +719,20 @@
         </option>
       </MavenSettings>
       <method v="2" />
+    </configuration>
+    <configuration name="Scala REPL" type="ScalaScriptConsoleRunConfiguration" factoryName="Scala Console" temporary="true" show_console_on_std_err="false" show_console_on_std_out="false">
+      <module name="KafkaStream" />
+      <option name="allowRunningInParallel" value="false" />
+      <option name="javaOptions" value="" />
+      <option name="myConsoleArgs" value="" />
+      <option name="projectPathOnTarget" />
+      <option name="selectedOptions">
+        <list />
+      </option>
+      <option name="workingDirectory" value="$PROJECT_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
     <configuration default="true" type="TestNG">
       <option name="TEST_OBJECT" value="CLASS" />
@@ -859,19 +928,19 @@
     </configuration>
     <list>
       <item itemvalue="Application.EsDataLoader" />
-      <item itemvalue="Application.IsDataLoader" />
-      <item itemvalue="JUnit.EsTest.esConnectTest" />
-      <item itemvalue="JUnit.MovieServiceTest.test2" />
+      <item itemvalue="JUnit.OrderFindTest" />
+      <item itemvalue="JUnit.OrderFindTest.mongodbTest" />
       <item itemvalue="Maven.businessServer [tomcat7:run]" />
+      <item itemvalue="Scala REPL.Scala REPL" />
       <item itemvalue="Tomcat Server.Tomcat8.5" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.OrderFindTest" />
+        <item itemvalue="JUnit.OrderFindTest.mongodbTest" />
+        <item itemvalue="Scala REPL.Scala REPL" />
         <item itemvalue="Maven.businessServer [tomcat7:run]" />
         <item itemvalue="Application.EsDataLoader" />
-        <item itemvalue="Application.IsDataLoader" />
-        <item itemvalue="JUnit.EsTest.esConnectTest" />
-        <item itemvalue="JUnit.MovieServiceTest.test2" />
       </list>
     </recent_temporary>
   </component>
@@ -909,7 +978,9 @@
       <workItem from="1699231978714" duration="9770000" />
       <workItem from="1699320248016" duration="38006000" />
       <workItem from="1699863483283" duration="11045000" />
-      <workItem from="1700211720801" duration="6057000" />
+      <workItem from="1700211720801" duration="24197000" />
+      <workItem from="1700559616419" duration="685000" />
+      <workItem from="1700878481116" duration="13766000" />
     </task>
     <task id="LOCAL-00001" summary="梳理下现有接口用到的表和接口逻辑">
       <option name="closed" value="true" />
@@ -935,7 +1006,31 @@
       <option name="project" value="LOCAL" />
       <updated>1699846057281</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="添加webapp配置">
+      <option name="closed" value="true" />
+      <created>1700265707215</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1700265707215</updated>
+    </task>
+    <task id="LOCAL-00005" summary="修改配置文件">
+      <option name="closed" value="true" />
+      <created>1700265759220</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1700265759220</updated>
+    </task>
+    <task id="LOCAL-00006" summary="修改es连接为http，取消ssl">
+      <option name="closed" value="true" />
+      <created>1700317434660</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1700317434660</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -992,7 +1087,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="origin/master" />
+                        <option value="origin/features/kibana" />
                       </list>
                     </value>
                   </entry>
@@ -1010,7 +1105,10 @@
     </ignored-roots>
     <MESSAGE value="梳理下现有接口用到的表和接口逻辑" />
     <MESSAGE value="更新es连接客户端创建方法" />
-    <option name="LAST_COMMIT_MESSAGE" value="更新es连接客户端创建方法" />
+    <MESSAGE value="添加webapp配置" />
+    <MESSAGE value="修改配置文件" />
+    <MESSAGE value="修改es连接为http，取消ssl" />
+    <option name="LAST_COMMIT_MESSAGE" value="修改es连接为http，取消ssl" />
   </component>
   <component name="editorHistoryManager">
     <entry file="jar://$MAVEN_REPOSITORY$/org/apache/spark/spark-core_2.11/2.1.1/spark-core_2.11-2.1.1-sources.jar!/org/apache/spark/rdd/RDD.scala">

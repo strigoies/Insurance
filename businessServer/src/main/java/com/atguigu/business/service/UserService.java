@@ -39,7 +39,7 @@ public class UserService {
     private MongoCollection<Document> authenticationCollection;
     private MongoCollection<Document> getAuthenticationCollection(){
         if(null == authenticationCollection)
-            authenticationCollection = mongoClient.getDatabase(Constant.MONGODB_DATABASE).getCollection(Constant.MONGODB_AUTHENTICATION_COLLECTION);
+            authenticationCollection = mongoClient.getDatabase(Constant.MONGODB_RECOMMENDER_DATABASE).getCollection(Constant.MONGODB_AUTHENTICATION_COLLECTION);
         return authenticationCollection;
     }
 
@@ -101,25 +101,25 @@ public class UserService {
         return true;
     }
 
-    public boolean updateAuthentication(Authentication authentication){
+    public boolean updateAuthentication(Authentication authentication) throws JsonProcessingException {
         User user = findAuthenticationByUID(authentication.getUid());
         if (null == user){
-            Document document = new Document("uid", authentication.getUid())
-                    .append("insuranceHolderName", authentication.getInsuranceHolderName())
-                    .append("insuranceHolderLicenseType", authentication.getInsuranceHolderLicenseType())
-                    .append("insuranceHolderIdNumber", authentication.getInsuranceHolderIdNumber())
-                    .append("insuranceHolderPhoneNumber", authentication.getInsuranceHolderPhoneNumber())
-                    .append("insuranceHolderIssue", authentication.getInsuranceHolderIssue())
-                    .append("insuranceHolderRemark", authentication.getInsuranceHolderRemark())
-                    .append("insuranceExceptName", authentication.getInsuranceExceptName())
-                    .append("insuranceExceptLicenseType", authentication.getInsuranceExceptLicenseType())
-                    .append("insuranceExceptIdNumber", authentication.getInsuranceExceptIdNumber())
-                    .append("insuranceExceptPhoneNumber", authentication.getInsuranceExceptPhoneNumber())
-                    .append("relationShip", authentication.getRelationShip())
-                    .append("insuranceExceptRemark", authentication.getInsuranceExceptRemark());
+//            Document document = new Document("uid", authentication.getUid())
+//                    .append("insuranceHolderName", authentication.getInsuranceHolderName())
+//                    .append("insuranceHolderLicenseType", authentication.getInsuranceHolderLicenseType())
+//                    .append("insuranceHolderIdNumber", authentication.getInsuranceHolderIdNumber())
+//                    .append("insuranceHolderPhoneNumber", authentication.getInsuranceHolderPhoneNumber())
+//                    .append("insuranceHolderIssue", authentication.getInsuranceHolderIssue())
+//                    .append("insuranceHolderRemark", authentication.getInsuranceHolderRemark())
+//                    .append("insuranceExceptName", authentication.getInsuranceExceptName())
+//                    .append("insuranceExceptLicenseType", authentication.getInsuranceExceptLicenseType())
+//                    .append("insuranceExceptIdNumber", authentication.getInsuranceExceptIdNumber())
+//                    .append("insuranceExceptPhoneNumber", authentication.getInsuranceExceptPhoneNumber())
+//                    .append("relationShip", authentication.getRelationShip())
+//                    .append("insuranceExceptRemark", authentication.getInsuranceExceptRemark());
 
             // 插入BSON文档到MongoDB集合
-            getAuthenticationCollection().insertOne(document);
+            getAuthenticationCollection().insertOne(Document.parse(objectMapper.writeValueAsString(authentication)));
             return true;
         }else{
             return false;

@@ -1,23 +1,25 @@
 package com.atguigu.business.service;
 
 import com.atguigu.business.model.domain.Order;
-import com.atguigu.business.model.domain.User;
 import com.atguigu.business.model.request.OrderRequest;
 import com.atguigu.business.utils.Constant;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.mongodb.Block;
 import com.mongodb.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.model.Filters;
 import com.mongodb.util.JSON;
-import com.sun.org.apache.xpath.internal.operations.Or;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.bson.Document;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 
 @Service
@@ -32,7 +34,7 @@ public class OrderService {
 
     private MongoCollection<Document> orderCollection;
 
-    private MongoCollection<Document> getOrderCollection(){
+    public MongoCollection<Document> getOrderCollection(){
         if (null == orderCollection)
             orderCollection = mongoClient.getDatabase(Constant.MONGODB_RECOMMENDER_DATABASE).getCollection(Constant.MONGODB_ORDER_COLLECTION);
         return orderCollection;
@@ -54,15 +56,18 @@ public class OrderService {
         }
     }
 
-    public Order findOrder(int uid){
-        Document order = getOrderCollection().find(Filters.eq("customer_id",uid)).first();
-        if (null == order || order.isEmpty()){
-            return null;
+    public List<Order> findOrder(int uid){
+        System.out.println("寻找订单开始");
+        List<Order> result = new ArrayList<>();
+
+        getOrderCollection().find(Filters.eq("customer_id", uid)).forEach((Block<? super Document>) document -> result.add(documentToOrder(document)));
+        if (result.size() == 0){
+            return Collections.emptyList();
         }
-        return documentToOrder(order);
+        return result;
     }
 
-    private Order documentToOrder(Document document){
+    public Order documentToOrder(Document document){
         try{
             return objectMapper.readValue(JSON.serialize(document),Order.class);
         } catch (JsonParseException e) {
