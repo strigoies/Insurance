@@ -10,6 +10,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mongodb.Block;
 import com.mongodb.MongoClient;
 import com.mongodb.client.MongoCollection;
+import com.mongodb.client.model.Accumulators;
+import com.mongodb.client.model.Aggregates;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.result.UpdateResult;
 import com.mongodb.util.JSON;
@@ -18,9 +20,8 @@ import org.springframework.stereotype.Service;
 import org.bson.Document;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.text.DecimalFormat;
+import java.util.*;
 
 
 @Service
@@ -34,11 +35,18 @@ public class OrderService {
     private ObjectMapper objectMapper = new ObjectMapper();
 
     private MongoCollection<Document> orderCollection;
+    private MongoCollection<Document> InsuranceCollection;
 
     public MongoCollection<Document> getOrderCollection() {
         if (null == orderCollection)
             orderCollection = mongoClient.getDatabase(Constant.MONGODB_RECOMMENDER_DATABASE).getCollection(Constant.MONGODB_ORDER_COLLECTION);
         return orderCollection;
+    }
+
+    public MongoCollection<Document> getInsuranceCollection() {
+        if (null == InsuranceCollection)
+            InsuranceCollection = mongoClient.getDatabase(Constant.MONGODB_DATABASE).getCollection(Constant.MONGODB_INSURSNCE_COLLECTION);
+        return InsuranceCollection;
     }
 
     public boolean createOrder(OrderRequest request) {
@@ -133,6 +141,53 @@ public class OrderService {
         }
 
         return existingOrder;
+    }
+
+    //获取购买所占百分比
+    public Map<String, String> getInsuranceNamePercentages() {
+        Map<String, Integer> insuranceCounts = new HashMap<>();
+        Map<String, String> insurancePercentages = new HashMap<>();
+
+        // 执行聚合操作
+        List<Document> results = getOrderCollection().aggregate(Arrays.asList(Aggregates.group("$insurance_id", Accumulators.sum("count", 1)))).into(new ArrayList<>());
+        long totalCount = getOrderCollection().count();
+
+        for (Document result : results) {
+            int insuranceId = result.getInteger("_id");
+
+            // 在保险集合中查找匹配的记录
+            Document insuranceDocument = getInsuranceCollection().find(Filters.eq("mid", insuranceId)).first();
+
+            if (insuranceDocument != null) {
+                String insuranceName = insuranceDocument.getString("descri");
+                int count = result.getInteger("count");
+
+                //TODO:因为数据库中的保险名字有重复，为测试使用，后期删掉
+                // 检查insuranceName是否已经存在于Map中
+                if (insuranceCounts.containsKey(insuranceName)) {
+                    // 如果存在，给insuranceName后面添加一个随机数字
+                    insuranceName = insuranceName + "_" + new Random().nextInt(1000); // 根据需要调整范围
+                }
+
+                insuranceCounts.put(insuranceName, count);
+            }
+        }
+
+
+        // 使用 DecimalFormat 保留两位有效数字
+        DecimalFormat df = new DecimalFormat("#.##");
+
+        // 计算百分比并保留两位有效数字
+        for (Map.Entry<String, Integer> entry : insuranceCounts.entrySet()) {
+            String insuranceName = entry.getKey();
+//            int id=entry.getKey();
+            int count = entry.getValue();
+//            System.out.println("Insurance Name: " + insuranceName + ", Count: " + count);
+            double percentage = (count / (double) totalCount) * 100;
+            String formattedPercentage = df.format(percentage);
+            insurancePercentages.put(insuranceName, formattedPercentage);
+        }
+        return insurancePercentages;
     }
 
 
