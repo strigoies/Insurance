@@ -10,87 +10,18 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ad15df8b-8e7a-4a01-b88b-6db965613286" name="Default" comment="修改es连接为http，取消ssl">
-      <change afterPath="$PROJECT_DIR$/businessServer/src/test/java/com/atguigu/business/service/OrderFindTest.java" afterDir="false" />
+    <list default="true" id="ad15df8b-8e7a-4a01-b88b-6db965613286" name="Default" comment="订单返回多个">
+      <change afterPath="$PROJECT_DIR$/businessServer/src/main/java/com/atguigu/business/model/domain/EsSearch.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/businessServer/src/main/java/com/atguigu/business/model/domain/SortSearch.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/08040d75-08ce-40c7-ac5e-4bc2d986862c.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/08040d75-08ce-40c7-ac5e-4bc2d986862c.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/businessServer/src/main/java/com/atguigu/business/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/businessServer/src/main/java/com/atguigu/business/Application.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/businessServer/src/main/java/com/atguigu/business/rest/OrderRestApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/businessServer/src/main/java/com/atguigu/business/rest/OrderRestApi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/businessServer/src/main/java/com/atguigu/business/rest/MovieRestApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/businessServer/src/main/java/com/atguigu/business/rest/MovieRestApi.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/businessServer/src/main/java/com/atguigu/business/rest/UserRestApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/businessServer/src/main/java/com/atguigu/business/rest/UserRestApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/businessServer/src/main/java/com/atguigu/business/service/OrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/businessServer/src/main/java/com/atguigu/business/service/OrderService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/businessServer/src/main/java/com/atguigu/business/service/TagService.java" beforeDir="false" afterPath="$PROJECT_DIR$/businessServer/src/main/java/com/atguigu/business/service/TagService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/businessServer/src/main/java/com/atguigu/business/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/businessServer/src/main/java/com/atguigu/business/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/classes/com/atguigu/business/Application.class" beforeDir="false" afterPath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/classes/com/atguigu/business/Application.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/classes/com/atguigu/business/model/recom/Recommendation.class" beforeDir="false" afterPath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/classes/com/atguigu/business/model/recom/Recommendation.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/classes/com/atguigu/business/model/request/MovieRecommendationRequest.class" beforeDir="false" afterPath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/classes/com/atguigu/business/model/request/MovieRecommendationRequest.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/classes/com/atguigu/business/rest/MovieRestApi.class" beforeDir="false" afterPath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/classes/com/atguigu/business/rest/MovieRestApi.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/classes/com/atguigu/business/rest/UserRestApi.class" beforeDir="false" afterPath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/classes/com/atguigu/business/rest/UserRestApi.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/classes/com/atguigu/business/service/MovieService.class" beforeDir="false" afterPath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/classes/com/atguigu/business/service/MovieService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/classes/com/atguigu/business/service/RecommenderService$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/classes/com/atguigu/business/service/RecommenderService$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/classes/com/atguigu/business/service/RecommenderService$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/classes/com/atguigu/business/service/RecommenderService$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/classes/com/atguigu/business/service/RecommenderService.class" beforeDir="false" afterPath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/classes/com/atguigu/business/service/RecommenderService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/classes/com/atguigu/business/service/TagService.class" beforeDir="false" afterPath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/classes/com/atguigu/business/service/TagService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/classes/com/atguigu/business/service/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/classes/com/atguigu/business/service/UserService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/classes/com/atguigu/business/utils/Configure.class" beforeDir="false" afterPath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/classes/com/atguigu/business/utils/Configure.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/classes/com/atguigu/business/utils/Constant.class" beforeDir="false" afterPath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/classes/com/atguigu/business/utils/Constant.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/classes/recommend.properties" beforeDir="false" afterPath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/classes/recommend.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/lib/HdrHistogram-2.1.9.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/lib/commons-codec-1.10.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/lib/compiler-0.9.3.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/lib/elasticsearch-5.6.2.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/lib/elasticsearch-rest-client-5.6.2.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/lib/hppc-0.7.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/lib/httpasyncclient-4.1.2.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/lib/httpclient-4.5.2.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/lib/httpcore-4.4.5.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/lib/httpcore-nio-4.4.5.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/lib/jackson-dataformat-cbor-2.8.6.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/lib/jackson-dataformat-smile-2.8.6.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/lib/jackson-dataformat-yaml-2.8.6.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/lib/jna-4.4.0-1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/lib/joda-time-2.9.5.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/lib/jopt-simple-5.0.2.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/lib/lang-mustache-client-5.6.2.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/lib/lucene-analyzers-common-6.6.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/lib/lucene-backward-codecs-6.6.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/lib/lucene-core-6.6.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/lib/lucene-grouping-6.6.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/lib/lucene-highlighter-6.6.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/lib/lucene-join-6.6.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/lib/lucene-memory-6.6.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/lib/lucene-misc-6.6.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/lib/lucene-queries-6.6.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/lib/lucene-queryparser-6.6.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/lib/lucene-sandbox-6.6.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/lib/lucene-spatial-6.6.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/lib/lucene-spatial-extras-6.6.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/lib/lucene-spatial3d-6.6.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/lib/lucene-suggest-6.6.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/lib/netty-3.10.6.Final.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/lib/netty-buffer-4.1.13.Final.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/lib/netty-codec-4.1.13.Final.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/lib/netty-codec-http-4.1.13.Final.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/lib/netty-common-4.1.13.Final.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/lib/netty-handler-4.1.13.Final.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/lib/netty-resolver-4.1.13.Final.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/lib/netty-transport-4.1.13.Final.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/lib/parent-join-client-5.6.2.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/lib/percolator-client-5.6.2.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/lib/reindex-client-5.6.2.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/lib/securesm-1.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/lib/snakeyaml-1.15.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/lib/t-digest-3.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/lib/transport-5.6.2.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/lib/transport-netty3-client-5.6.2.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/lib/transport-netty4-client-5.6.2.jar" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/businessServer/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/businessServer/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/businessServer/target/test-classes/com/atguigu/business/service/MovieServiceTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/businessServer/target/test-classes/com/atguigu/business/service/MovieServiceTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/recommender/DataLoader/src/main/resources/insurance_test.csv" beforeDir="false" afterPath="$PROJECT_DIR$/recommender/DataLoader/src/main/resources/insurance_test.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/recommender/DataLoader/src/main/scala/com/atguigu/recommender/IsDataLoader.scala" beforeDir="false" afterPath="$PROJECT_DIR$/recommender/DataLoader/src/main/scala/com/atguigu/recommender/IsDataLoader.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/recommender/DataLoader/target/classes/com/atguigu/recommender/ESConfig$.class" beforeDir="false" afterPath="$PROJECT_DIR$/recommender/DataLoader/target/classes/com/atguigu/recommender/ESConfig$.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/recommender/DataLoader/target/classes/com/atguigu/recommender/ESConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/recommender/DataLoader/target/classes/com/atguigu/recommender/ESConfig.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/recommender/DataLoader/target/classes/com/atguigu/recommender/MongoConfig$.class" beforeDir="false" afterPath="$PROJECT_DIR$/recommender/DataLoader/target/classes/com/atguigu/recommender/MongoConfig$.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/recommender/DataLoader/target/classes/com/atguigu/recommender/MongoConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/recommender/DataLoader/target/classes/com/atguigu/recommender/MongoConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/recommender/OfflineRecommender/src/main/scala/com/atguigu/offline/OfflineRecommender.scala" beforeDir="false" afterPath="$PROJECT_DIR$/recommender/OfflineRecommender/src/main/scala/com/atguigu/offline/OfflineRecommender.scala" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -593,29 +524,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "E:/SK-Project/Fusion/RecommendSystem",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "Libraries",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.3678161",
-    "settings.editor.selected.configurable": "MavenSettings",
-    "spring.configuration.checksum": "b8309ccf032c02b17212beff6d5af22e",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;E:/SK-Project/Fusion/RecommendSystem-baoxian/MovieRecommendSystem&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.3678161&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;MavenSettings&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;b8309ccf032c02b17212beff6d5af22e&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "mongo",
-      "redis",
-      "elasticsearch"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mongo&quot;,
+      &quot;redis&quot;,
+      &quot;elasticsearch&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\SK-Project\Fusion\RecommendSystem-baoxian\MovieRecommendSystem\businessServer\src\main" />
@@ -980,7 +911,10 @@
       <workItem from="1699863483283" duration="11045000" />
       <workItem from="1700211720801" duration="24197000" />
       <workItem from="1700559616419" duration="685000" />
-      <workItem from="1700878481116" duration="13766000" />
+      <workItem from="1700878481116" duration="26134000" />
+      <workItem from="1701048031608" duration="1625000" />
+      <workItem from="1701588957711" duration="6628000" />
+      <workItem from="1701758806701" duration="1194000" />
     </task>
     <task id="LOCAL-00001" summary="梳理下现有接口用到的表和接口逻辑">
       <option name="closed" value="true" />
@@ -1030,7 +964,15 @@
       <option name="project" value="LOCAL" />
       <updated>1700317434660</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="订单返回多个">
+      <option name="closed" value="true" />
+      <created>1700914379156</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1700914379156</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -1108,7 +1050,8 @@
     <MESSAGE value="添加webapp配置" />
     <MESSAGE value="修改配置文件" />
     <MESSAGE value="修改es连接为http，取消ssl" />
-    <option name="LAST_COMMIT_MESSAGE" value="修改es连接为http，取消ssl" />
+    <MESSAGE value="订单返回多个" />
+    <option name="LAST_COMMIT_MESSAGE" value="订单返回多个" />
   </component>
   <component name="editorHistoryManager">
     <entry file="jar://$MAVEN_REPOSITORY$/org/apache/spark/spark-core_2.11/2.1.1/spark-core_2.11-2.1.1-sources.jar!/org/apache/spark/rdd/RDD.scala">

@@ -1,0 +1,2 @@
+0:0:0:0:0:0:0:1 - - [26/Nov/2023:09:15:59 +0800] "GET /rest/insurance/genres?category=%E5%B9%B4%E9%87%91%E4%BF%9D%E9%99%A9&num=10 HTTP/1.1" 200 43 http-bio-8088-exec-2 1774
+0:0:0:0:0:0:0:1 - - [26/Nov/2023:10:08:42 +0800] "POST /rest/users/real-name HTTP/1.1" 200 27 http-bio-8088-exec-5 470

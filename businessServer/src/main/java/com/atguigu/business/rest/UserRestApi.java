@@ -50,13 +50,11 @@ public class UserRestApi {
     //用户喜好存储
     @RequestMapping(value = "/store-prefer", produces = "application/json", method = RequestMethod.POST)
     @ResponseBody
-    public Model addPrefGenres(@RequestParam("username") String username,@RequestParam("genres") String genres,Model model) throws UnsupportedEncodingException {
-        User user = userService.findByUsername(username);
-        genres= new String(genres.getBytes("ISO8859-1"),"UTF-8");
-        System.out.println("UserRestApi"+genres);
-        user.getPrefGenres().addAll(Arrays.asList(genres.split(",")));
-        user.setFirst(false);
-        model.addAttribute("success",userService.updateUser(user));
+    public Model addPrefGenres(@RequestBody User userOld,Model model) throws UnsupportedEncodingException {
+        User userNew = userService.findByUID(userOld.getUid());
+        userNew.setPrefGenres(userOld.getPrefGenres());
+        userNew.setFirst(false);
+        model.addAttribute("success",userService.updateUser(userNew));
         return model;
     }
 

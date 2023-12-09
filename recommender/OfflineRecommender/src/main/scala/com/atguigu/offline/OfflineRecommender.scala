@@ -26,7 +26,7 @@ case class Recommendation( mid: Int, score: Double )
 // 定义基于预测评分的用户推荐列表
 case class UserRecs( uid: Int, recs: Seq[Recommendation] )
 
-// 定义基于LFM电影特征向量的电影相似度列表
+// 定义基于LFM保险特征向量的保险相似度列表
 case class MovieRecs( mid: Int, recs: Seq[Recommendation] )
 
 object OfflineRecommender {
@@ -76,7 +76,7 @@ object OfflineRecommender {
     val (rank, iterations, lambda) = (200, 5, 0.1)
     val model = ALS.train(trainData, rank, iterations, lambda)
 
-    // 基于用户和电影的隐特征，计算预测评分，得到用户的推荐列表
+    // 基于隐特用户和保险的征，计算预测评分，得到用户的推荐列表
     // 计算user和movie的笛卡尔积，得到一个空评分矩阵
     val userMovies = userRDD.cartesian(movieRDD)
 
@@ -99,12 +99,12 @@ object OfflineRecommender {
       .format("com.mongodb.spark.sql")
       .save()
 
-    // 基于电影隐特征，计算相似度矩阵，得到电影的相似度列表
+    // 基于保险隐特征，计算相似度矩阵，得到保险的相似度列表
     val movieFeatures = model.productFeatures.map{
       case (mid, features) => (mid, new DoubleMatrix(features))
     }
 
-    // 对所有电影两两计算它们的相似度，先做笛卡尔积
+    // 对所有保险两两计算它们的相似度，先做笛卡尔积
     val movieRecs = movieFeatures.cartesian(movieFeatures)
       .filter{
         // 把自己跟自己的配对过滤掉

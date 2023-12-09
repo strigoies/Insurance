@@ -1,5 +1,7 @@
 package com.atguigu.business.rest;
 
+import com.atguigu.business.model.domain.EsSearch;
+import com.atguigu.business.model.domain.SortSearch;
 import com.atguigu.business.model.domain.Tag;
 import com.atguigu.business.model.recom.Recommendation;
 import com.atguigu.business.model.request.*;
@@ -122,8 +124,9 @@ public class MovieRestApi {
      */
     @RequestMapping(value = "/same", produces = "application/json", method = RequestMethod.GET )
     @ResponseBody
-    public Model getSameMovie(@RequestParam("descri")String descri,@RequestParam("num")int num, Model model) throws UnsupportedEncodingException {
-        descri = new String(descri.getBytes("ISO8859-1"),"UTF-8");
+    public Model getSameMovie(@RequestBody EsSearch esSearch, Model model) throws UnsupportedEncodingException {
+        String descri = esSearch.getQuery();
+        int num = esSearch.getNum();
         List<Recommendation> recommendations = recommenderService.getContentBasedMoreLikeThisRecommendations(new MovieRecommendationRequest(descri,num));
         model.addAttribute("success",false);
         model.addAttribute("insurances",movieService.getRecommendeMovies(recommendations));
@@ -145,12 +148,14 @@ public class MovieRestApi {
 
     /**
      * 所用表：ES
-     * 逻辑：模糊查询电影
+     * 逻辑：模糊查询保险
      */
     @RequestMapping(value = "/search", produces = "application/json", method = RequestMethod.GET )
     @ResponseBody
-    public Model getSearchMovies(@RequestParam("query")String query,@RequestParam("num")int num, Model model) throws UnsupportedEncodingException {
-        query= new String(query.getBytes("ISO8859-1"),"UTF-8");
+    public Model getSearchMovies(@RequestBody EsSearch esSearch, Model model) throws UnsupportedEncodingException {
+        String query = esSearch.getQuery();
+        int num = esSearch.getNum();
+//        query= new String(query.getBytes("ISO8859-1"),"UTF-8");
         List<Recommendation> recommendations = recommenderService.getContentBasedSearchRecommendations(new SearchRecommendationRequest(query,num));
         model.addAttribute("success",true);
         model.addAttribute("insurances",movieService.getRecommendeMovies(recommendations));
@@ -159,12 +164,14 @@ public class MovieRestApi {
 
     /**
      * 所用表：ES
-     * 逻辑：查询类别电影
+     * 逻辑：查询类别保险
      */
     @RequestMapping(value = "/genres", produces = "application/json", method = RequestMethod.GET )
     @ResponseBody
-    public Model getGenresMovies(@RequestParam("category")String category,@RequestParam("num")int num, Model model) throws UnsupportedEncodingException {
-        category= new String(category.getBytes("ISO8859-1"),"UTF-8");
+    public Model getGenresMovies(@RequestBody SortSearch sortSearch, Model model) throws UnsupportedEncodingException {
+        String category = sortSearch.getSort();
+        int num = sortSearch.getNum();
+//        category= new String(category.getBytes("ISO8859-1"),"UTF-8");
         List<Recommendation> recommendations = recommenderService.getContentBasedGenresRecommendations(new SearchRecommendationRequest(category,num));
         model.addAttribute("success",true);
         model.addAttribute("insurances",movieService.getRecommendeMovies(recommendations));

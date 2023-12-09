@@ -96,8 +96,8 @@ public class UserService {
     }
 
     public boolean updateUser(User user){
-        getUserCollection().updateOne(Filters.eq("uid", user.getUid()), new Document().append("$set",new Document("first", user.isFirst())));
-        getUserCollection().updateOne(Filters.eq("uid", user.getUid()), new Document().append("$set",new Document("prefGenres", user.getPrefGenres())));
+        getUserCollection().updateOne(Filters.eq("uid", user.getUid()), new Document("$set",new Document("first", user.isFirst())));
+        getUserCollection().updateOne(Filters.eq("uid", user.getUid()), new Document("$set",new Document("prefGenres", user.getPrefGenres())));
         return true;
     }
 

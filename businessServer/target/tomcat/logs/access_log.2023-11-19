@@ -1,0 +1,11 @@
+0:0:0:0:0:0:0:1 - - [19/Nov/2023:10:13:31 +0800] "GET /rest/insurance/hot?num=10 HTTP/1.1" 200 486 http-bio-8088-exec-2 539
+0:0:0:0:0:0:0:1 - - [19/Nov/2023:10:14:27 +0800] "GET /rest/insurance/new?num=10 HTTP/1.1" 200 4323 http-bio-8088-exec-3 53
+0:0:0:0:0:0:0:1 - - [19/Nov/2023:10:15:53 +0800] "GET /rest/insurance/wish?num=10&username=test HTTP/1.1" 200 4415 http-bio-8088-exec-6 452
+0:0:0:0:0:0:0:1 - - [19/Nov/2023:10:17:28 +0800] "GET /rest/insurance/search?query=%E5%AE%89%E9%82%A6&num=10 HTTP/1.1" 200 4191 http-bio-8088-exec-9 676
+0:0:0:0:0:0:0:1 - - [19/Nov/2023:10:19:20 +0800] "GET /rest/insurance/same?descri=%E7%BA%A2%E7%A6%8F%E5%A4%9A%E4%B8%A4%E5%85%A8%E4%BF%9D%E9%99%A9&num=10 HTTP/1.1" 200 4475 http-bio-8088-exec-2 150
+0:0:0:0:0:0:0:1 - - [19/Nov/2023:10:20:30 +0800] "GET /rest/insurance/info?id=1906 HTTP/1.1" 404 989 http-bio-8088-exec-5 26
+0:0:0:0:0:0:0:1 - - [19/Nov/2023:10:21:09 +0800] "GET /rest/insurance/info/1906 HTTP/1.1" 200 470 http-bio-8088-exec-5 108
+0:0:0:0:0:0:0:1 - - [19/Nov/2023:10:22:48 +0800] "GET /rest/insurance/genres?category=%E4%BA%BA%E5%AF%BF%E4%BF%9D%E9%99%A9&num=10 HTTP/1.1" 200 4351 http-bio-8088-exec-9 122
+0:0:0:0:0:0:0:1 - - [19/Nov/2023:10:27:46 +0800] "GET /rest/orders/create-order?uid=3556498&mid=1899 HTTP/1.1" 200 27 http-bio-8088-exec-1 94
+0:0:0:0:0:0:0:1 - - [19/Nov/2023:10:29:30 +0800] "GET /rest/orders/find-order?uid=3556498 HTTP/1.1" 200 161 http-bio-8088-exec-6 37
+0:0:0:0:0:0:0:1 - - [19/Nov/2023:20:10:51 +0800] "GET /rest/insurance/hot?num=10 HTTP/1.1" 200 486 http-bio-8088-exec-2 704

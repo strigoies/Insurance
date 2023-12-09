@@ -2,7 +2,7 @@
 <project version="4">
   <component name="dataSourceStorageLocal" created-in="IU-231.9392.1">
     <data-source name="mongo" uuid="08040d75-08ce-40c7-ac5e-4bc2d986862c">
-      <database-info product="Mongo DB" version="5.0.6" jdbc-version="4.2" driver-name="MongoDB JDBC Driver" driver-version="1.18" dbms="MONGO" exact-version="5.0.6" exact-driver-version="1.18" />
+      <database-info product="Mongo DB" version="5.0.22" jdbc-version="4.2" driver-name="MongoDB JDBC Driver" driver-version="1.18" dbms="MONGO" exact-version="5.0.22" exact-driver-version="1.18" />
       <case-sensitivity plain-identifiers="mixed" quoted-identifiers="mixed" />
       <secret-storage>master_key</secret-storage>
       <schema-mapping>
