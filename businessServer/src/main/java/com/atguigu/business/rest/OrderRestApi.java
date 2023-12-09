@@ -3,6 +3,9 @@ package com.atguigu.business.rest;
 import com.atguigu.business.model.domain.Order;
 import com.atguigu.business.model.request.OrderRequest;
 import com.atguigu.business.service.OrderService;
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 
 @RequestMapping("/rest/orders")
@@ -21,31 +26,57 @@ public class OrderRestApi {
     @Autowired
     private OrderService orderService;
 
-    @RequestMapping(value = "create-order",produces = "application/json",method = RequestMethod.GET)
+    @RequestMapping(value = "create-order", produces = "application/json", method = RequestMethod.GET)
     @ResponseBody
-    public Model createOrder(@RequestParam("uid")int uid,@RequestParam("mid")int mid,Model model){
+    public Model createOrder(@RequestParam("uid") int uid, @RequestParam("mid") int mid, Model model) {
         //创建订单
-        if (orderService.createOrder(new OrderRequest(uid,mid)))
-            model.addAttribute("success", true);
-        else
-            model.addAttribute("success", false);
+        if (orderService.createOrder(new OrderRequest(uid, mid))) model.addAttribute("success", true);
+        else model.addAttribute("success", false);
         return model;
     }
     //删除订单
 
     //修改订单
-
-    @RequestMapping(value = "find-order",produces = "application/json",method = RequestMethod.GET)
+    @RequestMapping(value = "update-order", produces = "application/json", method = RequestMethod.GET)
     @ResponseBody
-    public Model findOrder(@RequestParam("uid")int uid,Model model){
+    public Model updateOrder(@RequestParam("uid") int uid, @RequestParam("mid") int mid, @RequestParam("newData") String newData, Model model) {
+        if (orderService.upDateOrderByUidAndMid(uid, mid, newData)) {
+            model.addAttribute("success", true);
+        } else {
+            model.addAttribute("success", false);
+        }
+        return model;
+    }
+
+    @RequestMapping(value = "find-order", produces = "application/json", method = RequestMethod.GET)
+    @ResponseBody
+    public Model findOrder(@RequestParam("uid") int uid, Model model) {
         //查询订单
         List<Order> orders = orderService.findOrder(uid);
-        if (orders == null){
+        if (orders == null) {
             model.addAttribute("success", false);
         } else {
-            model.addAttribute("success",true);
+            model.addAttribute("success", true);
         }
-        model.addAttribute("order",orders);
+        model.addAttribute("order", orders);
+        return model;
+    }
+
+    @RequestMapping(value = "order-percentum", produces = "application/json", method = RequestMethod.GET)
+    @ResponseBody
+    public Model orderPercentum(Model model) {
+        //获取订单数量
+        Map<String, String> midCounts = orderService.getInsuranceNamePercentages();
+        if (midCounts != null) {
+            model.addAttribute("success", true);
+            // 打印每个mid的数量
+//            for (Map.Entry<String, String> entry : midCounts.entrySet()) {
+//                System.out.println("Mid: " + entry.getKey() + ", Count: " + entry.getValue());
+//            }
+        } else {
+            model.addAttribute("success", false);
+        }
+        model.addAttribute("percentum", midCounts);
         return model;
     }
 }
