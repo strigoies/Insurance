@@ -55,15 +55,9 @@ public class RecommenderService {
     private List<Recommendation> findContentBasedMoreLikeThisRecommendations(String desc, int maxItems) {
 //        MoreLikeThisQueryBuilder query = QueryBuilders.moreLikeThisQuery(
 //                new MoreLikeThisQueryBuilder.Item[]{new MoreLikeThisQueryBuilder.Item(Constant.ES_INDEX, Constant.ES_MOVIE_TYPE, String.valueOf(mid))});
-        MoreLikeThisQuery moreLikeThisQuery = MoreLikeThisQuery.of(m ->
-                m.fields("descri")
-                        .like(new Like.Builder().text(desc).build())
-                        .minTermFreq(1)
-        );
-        SearchRequest searchRequest = SearchRequest.of(s -> s.index(Constant.ES_INDEX)
-                .size(maxItems)
-                .query(Query.of(q -> q.moreLikeThis(moreLikeThisQuery))));
-        try{
+        MoreLikeThisQuery moreLikeThisQuery = MoreLikeThisQuery.of(m -> m.fields("descri").like(new Like.Builder().text(desc).build()).minTermFreq(1));
+        SearchRequest searchRequest = SearchRequest.of(s -> s.index(Constant.ES_INDEX).size(maxItems).query(Query.of(q -> q.moreLikeThis(moreLikeThisQuery))));
+        try {
             SearchResponse<Insurance> response = esClient.search(searchRequest, Insurance.class);
             return parseESResponse(response);
         } catch (IOException e) {
@@ -73,17 +67,16 @@ public class RecommenderService {
     }
 
     // 实时推荐
-    private List<Recommendation> findStreamRecs(int uid,int maxItems){
+    private List<Recommendation> findStreamRecs(int uid, int maxItems) {
         MongoCollection<Document> streamRecsCollection = mongoClient.getDatabase(Constant.MONGODB_DATABASE).getCollection(Constant.MONGODB_STREAM_RECS_COLLECTION);
         Document streamRecs = streamRecsCollection.find(new Document("uid", uid)).first();
         return parseRecs(streamRecs, maxItems);
     }
 
     //用于解析Document
-    private List<Recommendation>    parseRecs(Document document, int maxItems) {
+    private List<Recommendation> parseRecs(Document document, int maxItems) {
         List<Recommendation> recommendations = new ArrayList<>();
-        if (null == document || document.isEmpty())
-            return recommendations;
+        if (null == document || document.isEmpty()) return recommendations;
         ArrayList<Integer> recs = document.get("recs", ArrayList.class);
         for (int mid : recs) {
             int count = getMovieCount(mid);
@@ -99,9 +92,8 @@ public class RecommenderService {
     }
 
     //通过mid获取点击量
-    public int getMovieCount(int mids){
-        Document document = mongoClient.getDatabase(Constant.MONGODB_DATABASE).getCollection(Constant.MONGODB_INSURSNCE_COLLECTION)
-                .find(Filters.in("mid",mids)).first();
+    public int getMovieCount(int mids) {
+        Document document = mongoClient.getDatabase(Constant.MONGODB_DATABASE).getCollection(Constant.MONGODB_INSURSNCE_COLLECTION).find(Filters.in("mid", mids)).first();
         if (document != null) {
             return document.getInteger("count", -1);
         }
@@ -111,13 +103,9 @@ public class RecommenderService {
     // 全文检索
     private List<Recommendation> findContentBasedSearchRecommendations(String text, int maxItems) {
 //        MultiMatchQueryBuilder query = QueryBuilders.multiMatchQuery(text, "name", "descri");
-        MultiMatchQuery query = MultiMatchQuery.of(m ->
-                m.fields("name", "descri")
-                        .query(text)
-        );
-        SearchRequest searchRequest = SearchRequest.of(s -> s.size(maxItems)
-                .query(Query.of(q -> q.multiMatch(query))));
-        try{
+        MultiMatchQuery query = MultiMatchQuery.of(m -> m.fields("name", "descri").query(text));
+        SearchRequest searchRequest = SearchRequest.of(s -> s.size(maxItems).query(Query.of(q -> q.multiMatch(query))));
+        try {
             SearchResponse<Insurance> response = esClient.search(searchRequest, Insurance.class);
             return parseESResponse(response);
         } catch (IOException e) {
@@ -160,7 +148,7 @@ public class RecommenderService {
 //        }
 
         //实时推荐
-        List<Recommendation> streamRecs = findStreamRecs(productId,maxItems);
+        List<Recommendation> streamRecs = findStreamRecs(productId, maxItems);
         for (Recommendation recommendation : streamRecs) {
             hybridRecommendations.add(new Recommendation(recommendation.getMid(), recommendation.getCount() * SR_RATING_FACTOR));
         }
@@ -173,7 +161,6 @@ public class RecommenderService {
         });
         return hybridRecommendations.subList(0, maxItems > hybridRecommendations.size() ? hybridRecommendations.size() : maxItems);
     }
-
 
 
     public List<Recommendation> getCollaborativeFilteringRecommendations(UserRecommendationRequest request) {
@@ -190,7 +177,7 @@ public class RecommenderService {
     }
 
     public List<Recommendation> getHybridRecommendations(MovieHybridRecommendationRequest request) {
-        return  findHybridRecommendations(request.getMid(), request.getSum());
+        return findHybridRecommendations(request.getMid(), request.getSum());
     }
 
 
@@ -222,14 +209,9 @@ public class RecommenderService {
     public List<Recommendation> getContentBasedGenresRecommendations(SearchRecommendationRequest request) {
 
         // 保险分类
-        FuzzyQuery query = FuzzyQuery.of(m ->
-                m.field("genres.keyword")
-                        .value(request.getText())
-                        .fuzziness("2"));
-        SearchRequest searchRequest = SearchRequest.of(s -> s.index(Constant.ES_INDEX)
-                .size(request.getSum())
-                .query(Query.of(q -> q.fuzzy(query))));
-        try{
+        FuzzyQuery query = FuzzyQuery.of(m -> m.field("genres.keyword").value(request.getText()).fuzziness("2"));
+        SearchRequest searchRequest = SearchRequest.of(s -> s.index(Constant.ES_INDEX).size(request.getSum()).query(Query.of(q -> q.fuzzy(query))));
+        try {
             SearchResponse<Insurance> response = esClient.search(searchRequest, Insurance.class);
             return parseESResponse(response);
         } catch (IOException e) {
@@ -247,12 +229,11 @@ public class RecommenderService {
         return parseESResponse(esClient.prepareSearch().setIndices(Constant.ES_INDEX).setTypes(Constant.ES_MOVIE_TYPE).setQuery(QueryBuilders.queryStringQuery(request.getText())).setSize(request.getSum()).execute().actionGet());*/
     }
 
-    public List<Recommendation> getTopGenresRecommendations(TopGenresRecommendationRequest request){
+    public List<Recommendation> getTopGenresRecommendations(TopGenresRecommendationRequest request) {
 
         // Top10查询
-        Document genresTopMovies = mongoClient.getDatabase(Constant.MONGODB_DATABASE).getCollection(Constant.MONGODB_GENRES_TOP_MOVIES_COLLECTION)
-                .find(Filters.eq("genres",request.getGenres())).first();
-        return parseRecs(genresTopMovies,request.getSum());
+        Document genresTopMovies = mongoClient.getDatabase(Constant.MONGODB_DATABASE).getCollection(Constant.MONGODB_GENRES_TOP_MOVIES_COLLECTION).find(Filters.eq("genres", request.getGenres())).first();
+        return parseRecs(genresTopMovies, request.getSum());
     }
 
 }

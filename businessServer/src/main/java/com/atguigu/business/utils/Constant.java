@@ -10,10 +10,17 @@ public class Constant {
     public static String MONGODB_VIRTUAL_INSURANCE_COLLECTION = "insuranceData";
     public static String MONGODB_VIRTUAL_PROVINCE_COLLECTION = "provinceData";
     public static String MONGODB_VIRTUAL_INDUSTRY_COLLECTION= "industryData";
-
-    public static String MONGODB_USER_COLLECTION= "User";
+    public static String MONGODB_USER_COLLECTION = "User";
 
     public static String MONGODB_INSURSNCE_COLLECTION = "Insurance";
+    public static String MONGODB_EveryUserAvatar_COLLECTION = "EveryUserAvatar";
+    public static String MONGODB_EveryUserGender_COLLECTION = "EveryUserGender";
+    public static String MONGODB_EveryUserAge_COLLECTION = "EveryUserAge";
+    public static String MONGODB_EveryUserInjury_COLLECTION = "EveryUserInjury";
+    public static String MONGODB_ClaimSettlement_COLLECTION = "ClaimSettlement";
+
+    public static String MONGODB_AvatarInjury_COLLECTION = "AvatarInjury";
+    public static String MONGODB_EveryInjuryInsurance_COLLECTION = "EveryInjuryInsurance";
 
     public static String MONGODB_RATING_COLLECTION = "Rating";
 
