@@ -20,6 +20,7 @@ com\atguigu\business\service\RecommenderService.class
 com\atguigu\business\model\domain\Rating.class
 com\atguigu\business\model\request\RateMoreRecommendationRequest.class
 com\atguigu\business\model\domain\Order.class
+com\atguigu\business\model\domain\EveryInjuryInsurance.class
 com\atguigu\business\model\domain\Authentication.class
 com\atguigu\business\Application.class
 com\atguigu\business\model\request\HotRecommendationRequest.class

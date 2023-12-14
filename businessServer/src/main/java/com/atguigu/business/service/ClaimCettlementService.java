@@ -2,6 +2,7 @@
 package com.atguigu.business.service;
 
 import com.atguigu.business.model.domain.ClaimSettlement;
+import com.atguigu.business.model.domain.EveryInjuryInsurance;
 import com.atguigu.business.model.domain.InsuranceBeInjury;
 import com.atguigu.business.utils.Constant;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -39,6 +40,11 @@ public class ClaimCettlementService {
             movieCollection = mongoClient.getDatabase(Constant.MONGODB_DATABASE).getCollection(Constant.MONGODB_AvatarInjury_COLLECTION);
         return movieCollection;
     }
+    public MongoCollection<Document> getEveryInsuranceCollection() {
+        if (null == movieCollection)
+            movieCollection = mongoClient.getDatabase(Constant.MONGODB_DATABASE).getCollection(Constant.MONGODB_EveryInjuryInsurance_COLLECTION);
+        return movieCollection;
+    }
 
     private ClaimSettlement documentToClaimSettlement(Document document) {
         ClaimSettlement claimSettlement = null;
@@ -58,6 +64,15 @@ public class ClaimCettlementService {
         }
         return insuranceBeInjury;
     }
+    private EveryInjuryInsurance documentToEveryInjuryInsurance(Document document) {
+        EveryInjuryInsurance everyInjuryInsurance = null;
+        try {
+            everyInjuryInsurance = objectMapper.readValue(JSON.serialize(document), EveryInjuryInsurance.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return everyInjuryInsurance;
+    }
     public List<ClaimSettlement> avatarEveryAvatarInjuryAll() {
         FindIterable<Document> documents = getClaimsCollection().find();
         List<ClaimSettlement> claimSettlementList = new ArrayList<>();
@@ -75,4 +90,14 @@ public class ClaimCettlementService {
         }
         return claimSettlementList;
     }
+    public List<EveryInjuryInsurance> insuranceEveryInsurance() {
+        FindIterable<Document> documents = getEveryInsuranceCollection().find();
+        List<EveryInjuryInsurance> everyInjuryInsuranceList = new ArrayList<>();
+        for (Document document : documents) {
+            everyInjuryInsuranceList.add(documentToEveryInjuryInsurance(document));
+        }
+        return everyInjuryInsuranceList;
+    }
+
+
 }

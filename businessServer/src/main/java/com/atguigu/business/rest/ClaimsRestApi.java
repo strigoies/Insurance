@@ -2,6 +2,7 @@
 package com.atguigu.business.rest;
 
 import com.atguigu.business.model.domain.ClaimSettlement;
+import com.atguigu.business.model.domain.EveryInjuryInsurance;
 import com.atguigu.business.model.domain.InsuranceBeInjury;
 import com.atguigu.business.service.ClaimCettlementService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +38,16 @@ public class ClaimsRestApi {
         model.addAttribute("code", 200);
         model.addAttribute("message", "success");
         model.addAttribute("EveryInsuranceBeInjury", InsuranceBeInjuryList);
+        return model;
+    }
+
+    @RequestMapping(value = "/EveryInjuryInsurance", produces = "application/json", method = RequestMethod.GET)
+    @ResponseBody
+    public Model insuranceEveryInjuryInsurance(Model model) {
+        List<EveryInjuryInsurance> EveryInsurance = claimCettlementService.insuranceEveryInsurance();
+        model.addAttribute("code", 200);
+        model.addAttribute("message", "success");
+        model.addAttribute("EveryInjuryInsurance", EveryInsurance);
         return model;
     }
 }
