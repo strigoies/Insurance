@@ -27,23 +27,24 @@ public class ClaimCettlementService {
     @Autowired
     private ObjectMapper objectMapper;
 
-    private MongoCollection<Document> movieCollection;
-
+    private MongoCollection<Document> avatarEveryAvatarInjuryAllCollection;
+    private MongoCollection<Document> insuranceEveryInsuranceBeInjuryCollection;
+    private MongoCollection<Document> insuranceEveryInsurancetion;
     public MongoCollection<Document> getClaimsCollection() {
-        if (null == movieCollection)
-            movieCollection = mongoClient.getDatabase(Constant.MONGODB_DATABASE).getCollection(Constant.MONGODB_ClaimSettlement_COLLECTION);
-        return movieCollection;
+        if (null == avatarEveryAvatarInjuryAllCollection)
+            avatarEveryAvatarInjuryAllCollection = mongoClient.getDatabase(Constant.MONGODB_DATABASE).getCollection(Constant.MONGODB_ClaimSettlement_COLLECTION);
+        return avatarEveryAvatarInjuryAllCollection;
     }
 
     public MongoCollection<Document> getAvatarInjuryCollection() {
-        if (null == movieCollection)
-            movieCollection = mongoClient.getDatabase(Constant.MONGODB_DATABASE).getCollection(Constant.MONGODB_AvatarInjury_COLLECTION);
-        return movieCollection;
+        if (null == insuranceEveryInsuranceBeInjuryCollection)
+            insuranceEveryInsuranceBeInjuryCollection = mongoClient.getDatabase(Constant.MONGODB_DATABASE).getCollection(Constant.MONGODB_AvatarInjury_COLLECTION);
+        return insuranceEveryInsuranceBeInjuryCollection;
     }
     public MongoCollection<Document> getEveryInsuranceCollection() {
-        if (null == movieCollection)
-            movieCollection = mongoClient.getDatabase(Constant.MONGODB_DATABASE).getCollection(Constant.MONGODB_EveryInjuryInsurance_COLLECTION);
-        return movieCollection;
+        if (null == insuranceEveryInsurancetion)
+            insuranceEveryInsurancetion = mongoClient.getDatabase(Constant.MONGODB_DATABASE).getCollection(Constant.MONGODB_EveryInjuryInsurance_COLLECTION);
+        return insuranceEveryInsurancetion;
     }
 
     private ClaimSettlement documentToClaimSettlement(Document document) {
@@ -81,14 +82,13 @@ public class ClaimCettlementService {
         }
         return claimSettlementList;
     }
-
     public List<InsuranceBeInjury> insuranceEveryInsuranceBeInjury() {
         FindIterable<Document> documents = getAvatarInjuryCollection().find();
-        List<InsuranceBeInjury> claimSettlementList = new ArrayList<>();
+        List<InsuranceBeInjury> InsuranceBeInjuryList = new ArrayList<>();
         for (Document document : documents) {
-            claimSettlementList.add(documentToInsuranceBeInjury(document));
+            InsuranceBeInjuryList.add(documentToInsuranceBeInjury(document));
         }
-        return claimSettlementList;
+        return InsuranceBeInjuryList;
     }
     public List<EveryInjuryInsurance> insuranceEveryInsurance() {
         FindIterable<Document> documents = getEveryInsuranceCollection().find();
@@ -98,6 +98,4 @@ public class ClaimCettlementService {
         }
         return everyInjuryInsuranceList;
     }
-
-
 }
