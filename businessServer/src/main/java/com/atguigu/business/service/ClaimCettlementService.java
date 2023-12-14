@@ -2,6 +2,7 @@
 package com.atguigu.business.service;
 
 import com.atguigu.business.model.domain.ClaimSettlement;
+import com.atguigu.business.model.domain.InsuranceBeInjury;
 import com.atguigu.business.utils.Constant;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mongodb.MongoClient;
@@ -27,9 +28,15 @@ public class ClaimCettlementService {
 
     private MongoCollection<Document> movieCollection;
 
-    public MongoCollection<Document> getMovieCollection() {
+    public MongoCollection<Document> getClaimsCollection() {
         if (null == movieCollection)
             movieCollection = mongoClient.getDatabase(Constant.MONGODB_DATABASE).getCollection(Constant.MONGODB_ClaimSettlement_COLLECTION);
+        return movieCollection;
+    }
+
+    public MongoCollection<Document> getAvatarInjuryCollection() {
+        if (null == movieCollection)
+            movieCollection = mongoClient.getDatabase(Constant.MONGODB_DATABASE).getCollection(Constant.MONGODB_AvatarInjury_COLLECTION);
         return movieCollection;
     }
 
@@ -42,9 +49,17 @@ public class ClaimCettlementService {
         }
         return claimSettlement;
     }
-
+    private InsuranceBeInjury documentToInsuranceBeInjury(Document document) {
+        InsuranceBeInjury insuranceBeInjury = null;
+        try {
+            insuranceBeInjury = objectMapper.readValue(JSON.serialize(document), InsuranceBeInjury.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return insuranceBeInjury;
+    }
     public List<ClaimSettlement> avatarEveryAvatarInjuryAll() {
-        FindIterable<Document> documents = getMovieCollection().find();
+        FindIterable<Document> documents = getClaimsCollection().find();
         List<ClaimSettlement> claimSettlementList = new ArrayList<>();
         for (Document document : documents) {
             claimSettlementList.add(documentToClaimSettlement(document));
@@ -52,5 +67,12 @@ public class ClaimCettlementService {
         return claimSettlementList;
     }
 
-
+    public List<InsuranceBeInjury> insuranceEveryInsuranceBeInjury() {
+        FindIterable<Document> documents = getAvatarInjuryCollection().find();
+        List<InsuranceBeInjury> claimSettlementList = new ArrayList<>();
+        for (Document document : documents) {
+            claimSettlementList.add(documentToInsuranceBeInjury(document));
+        }
+        return claimSettlementList;
+    }
 }

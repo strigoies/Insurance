@@ -5,7 +5,9 @@ com\atguigu\business\model\domain\Tag.class
 com\atguigu\business\model\request\RegisterUserRequest.class
 com\atguigu\business\rest\MovieRestApi.class
 com\atguigu\business\rest\UserRestApi.class
+com\atguigu\business\model\domain\ClaimSettlement.class
 com\atguigu\business\model\domain\User.class
+com\atguigu\business\rest\ClaimsRestApi.class
 com\atguigu\business\service\RatingService.class
 com\atguigu\business\model\request\SearchRecommendationRequest.class
 com\atguigu\business\model\domain\EsSearch.class
@@ -30,6 +32,8 @@ com\atguigu\business\model\request\TopGenresRecommendationRequest.class
 com\atguigu\business\model\request\UserRecommendationRequest.class
 com\atguigu\business\model\request\MovieRatingRequest.class
 com\atguigu\business\service\UserService.class
+com\atguigu\business\service\ClaimCettlementService.class
 com\atguigu\business\service\RecommenderService$2.class
+com\atguigu\business\model\domain\InsuranceBeInjury.class
 com\atguigu\business\service\TagService.class
 com\atguigu\business\model\domain\SortSearch.class

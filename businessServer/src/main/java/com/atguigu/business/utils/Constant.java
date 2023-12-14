@@ -11,6 +11,7 @@ public class Constant {
 
     public static String MONGODB_INSURSNCE_COLLECTION = "Insurance";
     public static String MONGODB_ClaimSettlement_COLLECTION = "ClaimSettlement";
+    public static String MONGODB_AvatarInjury_COLLECTION = "AvatarInjury";
     public static String MONGODB_RATING_COLLECTION = "Rating";
 
     public static String MONGODB_TAG_COLLECTION = "Tag";
