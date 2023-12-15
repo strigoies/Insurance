@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ClaimSettlement {
     private String name;
-    private int number;
+    private int value;
 
     public String getName() {
         return name;
@@ -15,11 +15,11 @@ public class ClaimSettlement {
         this.name = name;
     }
 
-    public int getNumber() {
-        return number;
+    public int getValue() {
+        return value;
     }
 
-    public void setNumber(int number) {
-        this.number = number;
+    public void setValue(int value) {
+        this.value = value;
     }
 }

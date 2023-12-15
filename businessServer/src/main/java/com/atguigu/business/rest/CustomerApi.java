@@ -33,7 +33,6 @@ public class CustomerApi {
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace(); // 处理异常
         }
-        System.out.println(insurance);
         List<EveryUserAvatar> everyUserAvatarList = customerService.avatarEveryUserAvatar(insurance);
 
         if (everyUserAvatarList.isEmpty()) {
@@ -56,8 +55,6 @@ public class CustomerApi {
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace(); // 处理异常
         }
-        System.out.println(insurance);
-
         List<EveryUserAge> everyUserAgeList = customerService.ageEveryUserAge(insurance);
 
         if (everyUserAgeList.isEmpty()) {
