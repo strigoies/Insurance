@@ -15,6 +15,7 @@ import com.mongodb.client.model.Aggregates;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.result.UpdateResult;
 import com.mongodb.util.JSON;
+import com.sun.org.apache.xpath.internal.operations.Or;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.bson.Document;
@@ -91,7 +92,7 @@ public class OrderService {
     }
 
 
-    public Boolean upDateOrderByUidAndMid(int uid, int mid, String newData) {
+    public Boolean upDateOrderByUidAndMid(int uid, int mid, Order newData) {
         // 根据customer_id和insurance_id字段查找订单文档
         Document document = getOrderCollection().find(Filters.and(Filters.eq("customer_id", uid), Filters.eq("insurance_id", mid))).first();
         if (document != null) {
@@ -115,9 +116,8 @@ public class OrderService {
         }
     }
 
-    private Order updateOrderData(Order existingOrder, String newData) throws IOException {
+    private Order updateOrderData(Order existingOrder, Order newOrderData) throws IOException {
         // 将newData中的数据更新到existingOrder中
-        Order newOrderData = objectMapper.readValue(newData, Order.class);
 
         // 检查每个字段是否存在并且不为null，如果是，则更新existingOrder
         if (newOrderData.getAmount() != 0) {
