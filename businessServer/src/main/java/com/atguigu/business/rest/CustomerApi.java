@@ -28,11 +28,11 @@ public class CustomerApi {
     @GetMapping(value = "/EveryUserAvatar/{insurance}", produces = "application/json; charset=UTF-8")
     @ResponseBody
     public Model avatarEveryUserAvatar(@PathVariable(value = "insurance") String insurance, Model model) {
-//        try {
-//            insurance = new String(insurance.getBytes("iso-8859-1"), "utf-8");
-//        } catch (UnsupportedEncodingException e) {
-//            e.printStackTrace(); // 处理异常
-//        }
+        try {
+            insurance = new String(insurance.getBytes("iso-8859-1"), "utf-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace(); // 处理异常
+        }
         System.out.println(insurance);
         List<EveryUserAvatar> everyUserAvatarList = customerService.avatarEveryUserAvatar(insurance);
 
