@@ -41,7 +41,7 @@ public class VisualizationService {
 
     public MongoCollection<Document> getProvinceCollection() {
         if (null == provinceCollection)
-            provinceCollection = mongoClient.getDatabase(Constant.MONGODB_DATABASE).getCollection(Constant.MONGODB_VIRTUAL_INSURANCE_COLLECTION);
+            provinceCollection = mongoClient.getDatabase(Constant.MONGODB_DATABASE).getCollection(Constant.MONGODB_VIRTUAL_PROVINCE_COLLECTION);
         return provinceCollection;
     }
 
@@ -49,8 +49,16 @@ public class VisualizationService {
 
     public MongoCollection<Document> getIndustryCollection() {
         if (null == industryCollection)
-            industryCollection = mongoClient.getDatabase(Constant.MONGODB_DATABASE).getCollection(Constant.MONGODB_VIRTUAL_INSURANCE_COLLECTION);
+            industryCollection = mongoClient.getDatabase(Constant.MONGODB_DATABASE).getCollection(Constant.MONGODB_VIRTUAL_INDUSTRY_COLLECTION);
         return industryCollection;
+    }
+
+    private MongoCollection<Document> monthlyCollection;
+
+    public MongoCollection<Document> getMonthlyCollection() {
+        if (null == monthlyCollection)
+            monthlyCollection = mongoClient.getDatabase(Constant.MONGODB_DATABASE).getCollection(Constant.MONGODB_VIRTUAL_MONTHLY_COLLECTION);
+        return monthlyCollection;
     }
 
     public List<InsuranceTypeData> getInsuranceByType(String type) {
@@ -78,7 +86,7 @@ public class VisualizationService {
 
     public List<MonthlyData> getInsuranceMonthly(String type) {
         List<MonthlyData> result = new ArrayList<>();
-        getInsuranceCollection().find().forEach((Block<? super Document>)
+        getMonthlyCollection().find().forEach((Block<? super Document>)
                 document -> result.add(documentToMonthlyData(document)));
 
         if (result.size() == 0) {
