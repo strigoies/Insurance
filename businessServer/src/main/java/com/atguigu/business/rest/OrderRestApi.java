@@ -33,8 +33,20 @@ public class OrderRestApi {
         else model.addAttribute("success", false);
         return model;
     }
-    //删除订单
 
+    // 删除订单
+    @RequestMapping(value = "delete-order", produces = "application/json", method = RequestMethod.DELETE)
+    @ResponseBody
+    public Model deleteOrder(@RequestParam("uid") int uid, @RequestParam("mid") int mid,  Model model) {
+        if (orderService.deleteOrderByUid(uid, mid)) {
+            model.addAttribute("success", true);
+        } else {
+            model.addAttribute("success", false);
+        }
+        return model;
+    }
+
+    // 更新订单
     @RequestMapping(value = "update-order", produces = "application/json", method = RequestMethod.POST)
     @ResponseBody
     public Model updateOrder(@RequestBody UpdateRequest request, Model model) {

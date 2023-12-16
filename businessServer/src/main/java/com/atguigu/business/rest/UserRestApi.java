@@ -1,16 +1,22 @@
 package com.atguigu.business.rest;
 
 import com.atguigu.business.model.domain.Authentication;
+import com.atguigu.business.model.domain.Order;
 import com.atguigu.business.model.domain.User;
 import com.atguigu.business.model.request.LoginUserRequest;
 import com.atguigu.business.model.request.RegisterUserRequest;
+import com.atguigu.business.model.request.UpdateRequest;
 import com.atguigu.business.service.UserService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.jws.soap.SOAPBinding;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -64,5 +70,46 @@ public class UserRestApi {
         //将json存到mongodb
         model.addAttribute("success",userService.updateAuthentication(authentication));
         return model;
+    }
+
+    //用户查找
+    @RequestMapping(value = "find-user", produces = "application/json", method = RequestMethod.GET)
+    @ResponseBody
+    public Model findOrder(@RequestParam("offset") int offset,@RequestParam("limit") int limit, Model model) {
+        //查询订单
+        List<User> users = userService.findUsers(offset,limit);
+        if (users == null) {
+            model.addAttribute("false", false);
+        } else {
+            model.addAttribute("success", true);
+        }
+        model.addAttribute("order", users);
+        return model;
+    }
+    //用户删除
+    @RequestMapping(value = "delete-user", produces = "application/json", method = RequestMethod.DELETE)
+    @ResponseBody
+    public Model deleteOrder(@RequestParam("uid") int uid,  Model model) {
+        if (userService.deleteUserByUid(uid)) {
+            model.addAttribute("success", true);
+        } else {
+            model.addAttribute("false", false);
+        }
+        return model;
+    }
+    //用户修改
+    @RequestMapping(value = "update-user", produces = "application/json", method = RequestMethod.POST)
+    @ResponseBody
+    public Model updateOrder(@RequestBody UpdateRequest request, Model model) throws IOException {
+        int uid = request.getUid();
+        if (uid == 0){
+            return   model.addAttribute("Invalid uid;", true);
+        }
+        User newUser = request.getNewUser();
+        if (userService.upDateUserByUid(uid, newUser)) {
+            return model.addAttribute("User updated successfully", true);
+        } else {
+            return model.addAttribute("User not found", false);
+        }
     }
 }

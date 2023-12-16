@@ -1,11 +1,22 @@
 package com.atguigu.business.model.request;
 
 import com.atguigu.business.model.domain.Order;
+import com.atguigu.business.model.domain.User;
 
 public class UpdateRequest {
     private int uid;
     private int mid;
     private Order newData;
+
+    private User newUser;
+
+    public User getNewUser() {
+        return newUser;
+    }
+
+    public void setNewUser(User newUser) {
+        this.newUser = newUser;
+    }
 
     public int getUid() {
         return uid;

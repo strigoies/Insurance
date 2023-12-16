@@ -25,8 +25,6 @@ import java.util.Random;
 @Controller
 public class MovieRestApi {
 
-//    private Logger logger = LoggerFactory.getLogger(MovieRestApi.class);
-
     private static Logger logger = Logger.getLogger(MovieRestApi.class.getName());
 
     @Autowired
@@ -37,8 +35,7 @@ public class MovieRestApi {
     private UserService userService;
     @Autowired
     private RatingService ratingService;
-//    @Autowired
-//    private TagService tagService;
+
 
     /**
      * 该接口暂时不用
@@ -63,7 +60,7 @@ public class MovieRestApi {
     }
 
     /**
-     *该接口用到UserRecs表和GenresTopInsurances表
+     * 该接口用到UserRecs表和GenresTopInsurances表
      * 逻辑：如果有用户推荐矩阵，则返回结果；如果没有，则返回TOP10表中内容
      */
     @RequestMapping(value = "/wish", produces = "application/json", method = RequestMethod.GET )
@@ -177,99 +174,4 @@ public class MovieRestApi {
         model.addAttribute("insurances",movieService.getRecommendeMovies(recommendations));
         return model;
     }
-
-
-
-
-
-
-
-
-
-
-
-//    /**
-//     * 获取投票最多的电影
-//     * @param model
-//     * @return
-//     */
-//    @RequestMapping(value = "/rate", produces = "application/json", method = RequestMethod.GET )
-//    @ResponseBody
-//    public Model getRateMoreMovies(@RequestParam("num")int num, Model model) {
-//        List<Recommendation> recommendations = recommenderService.getRateMoreRecommendations(new RateMoreRecommendationRequest(num));
-//        model.addAttribute("success",true);
-//        model.addAttribute("insurances",movieService.getRecommendeMovies(recommendations));
-//        return model;
-//    }
-//
-//    /**
-//     * 获取用户评分过得电影
-//     * @param username
-//     * @param model
-//     * @return
-//     */
-//    @RequestMapping(value = "/myrate", produces = "application/json", method = RequestMethod.GET )
-//    @ResponseBody
-//    public Model getMyRateMovies(@RequestParam("username")String username, Model model) {
-//        User user = userService.findByUsername(username);
-//        model.addAttribute("success",true);
-//        model.addAttribute("insurances",movieService.getMyRateMovies(user.getUid()));
-//        return model;
-//    }
-//
-//
-//    @RequestMapping(value = "/rate/{id}", produces = "application/json", method = RequestMethod.GET )
-//    @ResponseBody
-//    public Model rateToMovie(@PathVariable("id")int id,@RequestParam("score")Double score,@RequestParam("username")String username, Model model) {
-//        User user = userService.findByUsername(username);
-//        MovieRatingRequest request = new MovieRatingRequest(user.getUid(),id,score);
-//        boolean complete = ratingService.movieRating(request);
-//        //埋点日志
-//        if(complete) {
-//            System.out.print("=========complete=========");
-//            logger.info(Constant.MOVIE_RATING_PREFIX + ":" + user.getUid() +"|"+ id +"|"+ request.getScore() +"|"+ System.currentTimeMillis()/1000);
-//        }
-//        model.addAttribute("success",true);
-//        model.addAttribute("message"," 已完成评分！");
-//        return model;
-//    }
-
-
-//    @RequestMapping(value = "/tag/{mid}", produces = "application/json", method = RequestMethod.GET )
-//    @ResponseBody
-//    public Model getMovieTags(@PathVariable("mid")int mid, Model model) {
-//        model.addAttribute("success",true);
-//        model.addAttribute("tags",tagService.findMovieTags(mid));
-//        return model;
-//    }
-
-//    @RequestMapping(value = "/mytag/{mid}", produces = "application/json", method = RequestMethod.GET )
-//    @ResponseBody
-//    public Model getMyTags(@PathVariable("mid")int mid,@RequestParam("username")String username, Model model) {
-//        User user = userService.findByUsername(username);
-//        model.addAttribute("success",true);
-//        model.addAttribute("tags",tagService.findMyMovieTags(user.getUid(),mid));
-//        return model;
-//    }
-//
-//    @RequestMapping(value = "/newtag/{mid}", produces = "application/json", method = RequestMethod.GET )
-//    @ResponseBody
-//    public Model addMyTags(@PathVariable("mid")int mid,@RequestParam("tagname")String tagname,@RequestParam("username")String username, Model model) {
-//        User user = userService.findByUsername(username);
-//        Tag tag = new Tag(user.getUid(),mid,tagname);
-//        tagService.newTag(tag);
-//        model.addAttribute("success",true);
-//        model.addAttribute("tag",tag);
-//        return model;
-//    }
-
-//    @RequestMapping(value = "/stat", produces = "application/json", method = RequestMethod.GET )
-//    @ResponseBody
-//    public Model getMyRatingStat(@RequestParam("username")String username, Model model) {
-//        User user = userService.findByUsername(username);
-//        model.addAttribute("success",true);
-//        model.addAttribute("stat",ratingService.getMyRatingStat(user));
-//        return model;
-//    }
-
 }

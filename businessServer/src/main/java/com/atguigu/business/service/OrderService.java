@@ -13,6 +13,7 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.model.Accumulators;
 import com.mongodb.client.model.Aggregates;
 import com.mongodb.client.model.Filters;
+import com.mongodb.client.result.DeleteResult;
 import com.mongodb.client.result.UpdateResult;
 import com.mongodb.util.JSON;
 import com.sun.org.apache.xpath.internal.operations.Or;
@@ -67,7 +68,6 @@ public class OrderService {
     }
 
     public List<Order> findOrder(int uid) {
-        System.out.println("寻找订单开始");
         List<Order> result = new ArrayList<>();
         getOrderCollection().find(Filters.eq("customer_id", uid)).forEach((Block<? super Document>) document -> result.add(documentToOrder(document)));
         if (result.size() == 0) {
@@ -114,6 +114,18 @@ public class OrderService {
         } else {
             return false;
         }
+    }
+
+    public Boolean deleteOrderByUid(int uid,int mid){
+        // 根据customer_id和insurance_id字段查找订单文档
+        if (getOrderCollection().find(Filters.and(Filters.eq("customer_id", uid), Filters.eq("insurance_id", mid))).first() != null){
+            DeleteResult deleteResult = getOrderCollection().deleteOne(Filters.and(Filters.eq("customer_id", uid), Filters.eq("insurance_id", mid)));
+            if (deleteResult.getDeletedCount() > 0){
+                System.out.println(deleteResult);
+                return true;
+            }
+        }
+        return false;
     }
 
     private Order updateOrderData(Order existingOrder, Order newOrderData) throws IOException {
