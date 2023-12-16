@@ -10,6 +10,7 @@ public class Constant {
     public static String MONGODB_VIRTUAL_INSURANCE_COLLECTION = "insuranceData";
     public static String MONGODB_VIRTUAL_PROVINCE_COLLECTION = "provinceData";
     public static String MONGODB_VIRTUAL_INDUSTRY_COLLECTION= "industryData";
+    public static String MONGODB_VIRTUAL_MONTHLY_COLLECTION= "monthlyData";
 
     public static String MONGODB_USER_COLLECTION= "User";
 
