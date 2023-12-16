@@ -119,7 +119,7 @@ public class MovieRestApi {
      * 逻辑：使用ES的相关查询方法
      * 获取电影详细页面相似的电影集合
      */
-    @RequestMapping(value = "/same", produces = "application/json", method = RequestMethod.GET )
+    @RequestMapping(value = "/same", produces = "application/json", method = RequestMethod.POST )
     @ResponseBody
     public Model getSameMovie(@RequestBody EsSearch esSearch, Model model) throws UnsupportedEncodingException {
         String descri = esSearch.getQuery();
@@ -147,7 +147,7 @@ public class MovieRestApi {
      * 所用表：ES
      * 逻辑：模糊查询保险
      */
-    @RequestMapping(value = "/search", produces = "application/json", method = RequestMethod.GET )
+    @RequestMapping(value = "/search", produces = "application/json", method = RequestMethod.POST )
     @ResponseBody
     public Model getSearchMovies(@RequestBody EsSearch esSearch, Model model) throws UnsupportedEncodingException {
         String query = esSearch.getQuery();
@@ -163,7 +163,7 @@ public class MovieRestApi {
      * 所用表：ES
      * 逻辑：查询类别保险
      */
-    @RequestMapping(value = "/genres", produces = "application/json", method = RequestMethod.GET )
+    @RequestMapping(value = "/genres", produces = "application/json", method = RequestMethod.POST )
     @ResponseBody
     public Model getGenresMovies(@RequestBody SortSearch sortSearch, Model model) throws UnsupportedEncodingException {
         String category = sortSearch.getSort();
