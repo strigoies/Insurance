@@ -11,7 +11,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.UnsupportedEncodingException;
-import java.util.Collections;
 import java.util.List;
 
 @RequestMapping("/eduservice/teacher")
@@ -25,63 +24,61 @@ public class CustomerApi {
         this.customerService = customerService;
     }
 
-    @GetMapping(value = "/EveryUserAvatar/{insurance}", produces = "application/json; charset=UTF-8")
+    @GetMapping(value = "/EveryUserAvatar", produces = "application/json; charset=UTF-8")
     @ResponseBody
-    public Model avatarEveryUserAvatar(@PathVariable(value = "insurance") String insurance, Model model) {
+    public Model avatarEveryUserAvatar(@RequestParam(value = "insurance") String insurance, Model model) {
         try {
             insurance = new String(insurance.getBytes("iso-8859-1"), "utf-8");
         } catch (UnsupportedEncodingException e) {
-            e.printStackTrace(); // 处理异常
+            e.printStackTrace();
         }
         List<EveryUserAvatar> everyUserAvatarList = customerService.avatarEveryUserAvatar(insurance);
 
         if (everyUserAvatarList.isEmpty()) {
-            model.addAttribute("code", 404); // 404表示资源未找到
+            model.addAttribute("code", 404);
             model.addAttribute("message", "List is empty");
         } else {
             model.addAttribute("code", 200);
             model.addAttribute("message", "success");
             model.addAttribute("EveryUserAvatarList", everyUserAvatarList);
         }
-
         return model;
     }
 
-    @GetMapping(value = "/EveryUserAge/{insurance}", produces = "application/json; charset=UTF-8")
+    @GetMapping(value = "/EveryUserAge", produces = "application/json; charset=UTF-8")
     @ResponseBody
-    public Model ageEveryUserAge(@PathVariable(value = "insurance") String insurance, Model model) {
+    public Model ageEveryUserAge(@RequestParam(value = "insurance") String insurance, Model model) {
         try {
             insurance = new String(insurance.getBytes("iso-8859-1"), "utf-8");
         } catch (UnsupportedEncodingException e) {
-            e.printStackTrace(); // 处理异常
+            e.printStackTrace();
         }
         List<EveryUserAge> everyUserAgeList = customerService.ageEveryUserAge(insurance);
 
         if (everyUserAgeList.isEmpty()) {
-            model.addAttribute("code", 404); // 404表示资源未找到
+            model.addAttribute("code", 404);
             model.addAttribute("message", "List is empty");
         } else {
             model.addAttribute("code", 200);
             model.addAttribute("message", "success");
             model.addAttribute("EveryUserAgeList", everyUserAgeList);
         }
-
         return model;
     }
 
-    @GetMapping(value = "/EveryUserGender/{insurance}", produces = "application/json; charset=UTF-8")
+    @GetMapping(value = "/EveryUserGender", produces = "application/json; charset=UTF-8")
     @ResponseBody
-    public Model genderEveryUserGender(@PathVariable(value = "insurance") String insurance, Model model) {
+    public Model genderEveryUserGender(@RequestParam(value = "insurance") String insurance, Model model) {
         try {
             insurance = new String(insurance.getBytes("iso-8859-1"), "utf-8");
         } catch (UnsupportedEncodingException e) {
-            e.printStackTrace(); // 处理异常
+            e.printStackTrace();
         }
 
         List<EveryUserGender> everyUserGenderList = customerService.genderEveryUserGender(insurance);
 
         if (everyUserGenderList.isEmpty()) {
-            model.addAttribute("code", 404); // 404表示资源未找到
+            model.addAttribute("code", 404);
             model.addAttribute("message", "List is empty");
         } else {
             model.addAttribute("code", 200);
@@ -92,19 +89,19 @@ public class CustomerApi {
         return model;
     }
 
-    @GetMapping(value = "/EveryUserInjury/{insurance}", produces = "application/json; charset=UTF-8")
+    @GetMapping(value = "/EveryUserInjury", produces = "application/json; charset=UTF-8")
     @ResponseBody
-    public Model injuryEveryUserInjury(@PathVariable(value = "insurance") String insurance, Model model) {
+    public Model injuryEveryUserInjury(@RequestParam(value = "insurance") String insurance, Model model) {
         try {
             insurance = new String(insurance.getBytes("iso-8859-1"), "utf-8");
         } catch (UnsupportedEncodingException e) {
-            e.printStackTrace(); // 处理异常
+            e.printStackTrace();
         }
 
         List<EveryUserInjury> everyUserInjuryList = customerService.injuryEveryUserInjury(insurance);
 
         if (everyUserInjuryList.isEmpty()) {
-            model.addAttribute("code", 404); // 404表示资源未找到
+            model.addAttribute("code", 404);
             model.addAttribute("message", "List is empty");
         } else {
             model.addAttribute("code", 200);

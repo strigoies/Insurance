@@ -4,15 +4,15 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class EveryUserAvatar {
-    private String name;
+    private String insurance;
     private int value;
 
-    public String getName() {
-        return name;
+    public String getInsurance() {
+        return insurance;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setInsurance(String insurance) {
+        this.insurance = insurance;
     }
 
     public int getValue() {

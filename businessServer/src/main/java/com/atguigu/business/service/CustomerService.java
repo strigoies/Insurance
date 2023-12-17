@@ -17,7 +17,9 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class CustomerService {
@@ -77,7 +79,6 @@ public class CustomerService {
         return EveryUserInjuryCollection;
     }
 
-
     private EveryUserAvatar documentToEveryUserAvatar(Document document) throws IOException {
         return objectMapper.readValue(JSON.serialize(document), EveryUserAvatar.class);
     }
@@ -94,22 +95,120 @@ public class CustomerService {
         return objectMapper.readValue(JSON.serialize(document), EveryUserInjury.class);
     }
 
+    // 查询并统计每个保险类型的和
     public List<EveryUserAvatar> avatarEveryUserAvatar(String insurance) {
-        FindIterable<Document> documents = getEveryUserAvatarCollection().find(Filters.in("insurance", insurance));
+        if ("全部".equals(insurance)) {
+            List<EveryUserAvatar> allEveryUserAvatars = mapDocumentsToEveryUserAvatarList(getEveryUserAvatarCollection().find());
+            return aggregateSumForAllInsurance(allEveryUserAvatars);
+        } else {
+            FindIterable<Document> documents = getEveryUserAvatarCollection().find(Filters.in("name", insurance));
+            return mapDocumentsToEveryUserAvatarList(documents);
+        }
+    }
+
+    // 统计每个保险类型的和
+    private List<EveryUserAvatar> aggregateSumForAllInsurance(List<EveryUserAvatar> allEveryUserAvatars) {
+        // 使用Map来聚合每个保险类型的和
+        Map<String, EveryUserAvatar> insuranceSumMap = new HashMap<>();
+
+        for (EveryUserAvatar everyUserAvatar : allEveryUserAvatars) {
+            String insurance = everyUserAvatar.getInsurance();
+
+            if (insuranceSumMap.containsKey(insurance)) {
+                // 如果Map中已经包含该保险类型，累加相应字段的值
+                EveryUserAvatar sumAvatar = insuranceSumMap.get(insurance);
+                sumAvatar.setValue(sumAvatar.getValue() + everyUserAvatar.getValue());
+            } else {
+                // 如果Map中不包含该保险类型，将其添加到Map中
+                insuranceSumMap.put(insurance, everyUserAvatar);
+            }
+        }
+
+        // 将Map中的值转换为List并返回
+        return new ArrayList<>(insuranceSumMap.values());
+    }
+
+    // 查询并统计每个保险类型的和
+    public List<EveryUserAge> ageEveryUserAge(String insurance) {
+        if ("全部".equals(insurance)) {
+            List<EveryUserAge> allEveryUserAges = mapDocumentsToEveryUserAgeList(getEveryUserAgeCollection().find());
+            return aggregateSumAgeForAllInsurance(allEveryUserAges);
+        } else {
+            FindIterable<Document> documents = getEveryUserAgeCollection().find(Filters.in("insurance", insurance));
+            return mapDocumentsToEveryUserAgeList(documents);
+        }
+    }
+
+    // 统计每个保险类型的和
+    private List<EveryUserAge> aggregateSumAgeForAllInsurance(List<EveryUserAge> allEveryUserAges) {
+        // 使用Map来聚合每个保险类型的和
+        Map<String, EveryUserAge> insuranceSumMap = new HashMap<>();
+
+        for (EveryUserAge everyUserAge : allEveryUserAges) {
+            String insurance = everyUserAge.getName();
+
+            if (insuranceSumMap.containsKey(insurance)) {
+                // 如果Map中已经包含该保险类型，累加相应字段的值
+                EveryUserAge sumAge = insuranceSumMap.get(insurance);
+                sumAge.setValue(sumAge.getValue() + everyUserAge.getValue());
+            } else {
+                // 如果Map中不包含该保险类型，将其添加到Map中
+                insuranceSumMap.put(insurance, everyUserAge);
+            }
+        }
+
+        // 将Map中的值转换为List并返回
+        return new ArrayList<>(insuranceSumMap.values());
+    }
+
+    // 查询保险类型的数据
+    public List<EveryUserGender> genderEveryUserGender(String insurance) {
+        if ("全部".equals(insurance)) {
+            List<EveryUserGender> allEveryUserGenders = mapDocumentsToEveryUserGenderList(getEveryUserGenderCollection().find());
+            return aggregateSumGenderForAllInsurance(allEveryUserGenders);
+        } else {
+            FindIterable<Document> documents = getEveryUserGenderCollection().find(Filters.in("insurance", insurance));
+            return mapDocumentsToEveryUserGenderList(documents);
+        }
+    }
+
+    // 统计每个保险类型的和
+    private List<EveryUserGender> aggregateSumGenderForAllInsurance(List<EveryUserGender> allEveryUserGenders) {
+        // 使用Map来聚合每个保险类型的和
+        Map<String, EveryUserGender> insuranceSumMap = new HashMap<>();
+
+        for (EveryUserGender everyUserGender : allEveryUserGenders) {
+            String insurance = everyUserGender.getName();
+
+            if (insuranceSumMap.containsKey(insurance)) {
+                // 如果Map中已经包含该保险类型，累加相应字段的值
+                EveryUserGender sumGender = insuranceSumMap.get(insurance);
+                sumGender.setValue(sumGender.getValue() + everyUserGender.getValue());
+            } else {
+                // 如果Map中不包含该保险类型，将其添加到Map中
+                insuranceSumMap.put(insurance, everyUserGender);
+            }
+        }
+
+        // 将Map中的值转换为List并返回
+        return new ArrayList<>(insuranceSumMap.values());
+    }
+
+    // 查询保险类型的数据
+
+    private List<EveryUserAvatar> mapDocumentsToEveryUserAvatarList(FindIterable<Document> documents) {
         List<EveryUserAvatar> everyUserAvatarsList = new ArrayList<>();
         for (Document document : documents) {
             try {
                 everyUserAvatarsList.add(documentToEveryUserAvatar(document));
             } catch (IOException e) {
-                // 处理异常，可以抛出自定义异常或记录日志
                 e.printStackTrace();
             }
         }
         return everyUserAvatarsList;
     }
 
-    public List<EveryUserAge> ageEveryUserAge(String insurance) {
-        FindIterable<Document> documents = getEveryUserAgeCollection().find(Filters.in("insurance", insurance));
+    private List<EveryUserAge> mapDocumentsToEveryUserAgeList(FindIterable<Document> documents) {
         List<EveryUserAge> everyUserAgesList = new ArrayList<>();
         for (Document document : documents) {
             try {
@@ -121,8 +220,7 @@ public class CustomerService {
         return everyUserAgesList;
     }
 
-    public List<EveryUserGender> genderEveryUserGender(String insurance) {
-        FindIterable<Document> documents = getEveryUserGenderCollection().find(Filters.in("insurance", insurance));
+    private List<EveryUserGender> mapDocumentsToEveryUserGenderList(FindIterable<Document> documents) {
         List<EveryUserGender> everyUserGendersList = new ArrayList<>();
         for (Document document : documents) {
             try {
@@ -134,8 +232,7 @@ public class CustomerService {
         return everyUserGendersList;
     }
 
-    public List<EveryUserInjury> injuryEveryUserInjury(String insurance) {
-        FindIterable<Document> documents = getEveryUserInjuryCollection().find(Filters.in("insurance", insurance));
+    private List<EveryUserInjury> mapDocumentsToEveryUserInjuryList(FindIterable<Document> documents) {
         List<EveryUserInjury> everyUserInjuriesList = new ArrayList<>();
         for (Document document : documents) {
             try {
@@ -146,4 +243,37 @@ public class CustomerService {
         }
         return everyUserInjuriesList;
     }
+
+    public List<EveryUserInjury> injuryEveryUserInjury(String insurance) {
+        if ("全部".equals(insurance)) {
+            List<EveryUserInjury> allEveryUserInjuries = mapDocumentsToEveryUserInjuryList(getEveryUserInjuryCollection().find());
+            return aggregateSumInjuryForAllInsurance(allEveryUserInjuries);
+        } else {
+            FindIterable<Document> documents = getEveryUserInjuryCollection().find(Filters.in("insurance", insurance));
+            return mapDocumentsToEveryUserInjuryList(documents);
+        }
+    }
+
+    // 统计每个保险类型的和
+    private List<EveryUserInjury> aggregateSumInjuryForAllInsurance(List<EveryUserInjury> allEveryUserInjuries) {
+        // 使用Map来聚合每个保险类型的和
+        Map<String, EveryUserInjury> insuranceSumMap = new HashMap<>();
+
+        for (EveryUserInjury everyUserInjury : allEveryUserInjuries) {
+            String insurance = everyUserInjury.getName();
+
+            if (insuranceSumMap.containsKey(insurance)) {
+                // 如果Map中已经包含该保险类型，累加相应字段的值
+                EveryUserInjury sumInjury = insuranceSumMap.get(insurance);
+                sumInjury.setValue(sumInjury.getValue() + everyUserInjury.getValue());
+            } else {
+                // 如果Map中不包含该保险类型，将其添加到Map中
+                insuranceSumMap.put(insurance, everyUserInjury);
+            }
+        }
+
+        // 将Map中的值转换为List并返回
+        return new ArrayList<>(insuranceSumMap.values());
+    }
+
 }
