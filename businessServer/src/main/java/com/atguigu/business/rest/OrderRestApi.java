@@ -62,11 +62,10 @@ public class OrderRestApi {
     }
 
 
-
+    //查询订单
     @RequestMapping(value = "find-order", produces = "application/json", method = RequestMethod.GET)
     @ResponseBody
     public Model findOrder(@RequestParam("uid") int uid, Model model) {
-        //查询订单
         List<Order> orders = orderService.findOrder(uid);
         if (orders == null) {
             model.addAttribute("success", false);

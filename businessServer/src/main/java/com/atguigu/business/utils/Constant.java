@@ -8,9 +8,12 @@ public class Constant {
     public static String MONGODB_RECOMMENDER_DATABASE = "recommender";
 
     public static String MONGODB_VIRTUAL_INSURANCE_COLLECTION = "insuranceData";
+    public static String MONGODB_VIRTUAL_INSURANCE_PLAN_COLLECTION = "insurancePlanData";
     public static String MONGODB_VIRTUAL_PROVINCE_COLLECTION = "provinceData";
     public static String MONGODB_VIRTUAL_INDUSTRY_COLLECTION= "industryData";
     public static String MONGODB_VIRTUAL_MONTHLY_COLLECTION= "monthlyData";
+
+    public static String MONGODB_VIRTUAL_MONTHLY_INJURY_COLLECTION="monthlyInjuryData";
 
     public static String MONGODB_USER_COLLECTION= "User";
 

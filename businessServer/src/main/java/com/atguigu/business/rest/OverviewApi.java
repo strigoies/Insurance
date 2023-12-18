@@ -2,6 +2,7 @@ package com.atguigu.business.rest;
 
 import com.atguigu.business.model.domain.*;
 import com.atguigu.business.service.VisualizationService;
+import org.bson.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,7 +30,7 @@ public class OverviewApi {
     @ResponseBody
     public Model insuranceEveryInsurance(Model model) {
         try {
-            List<InsuranceTypeData> data = visualService.getInsuranceByType(SALES);
+            List<Document> data = visualService.getInsuranceByType(SALES);
             model.addAttribute("code", 200);
             model.addAttribute("message", "保险种类销售数据获取成功！");
             model.addAttribute("EveryInsurance", data);
@@ -93,7 +94,7 @@ public class OverviewApi {
     @ResponseBody
     public Model monthEveryMonthInjury(Model model) {
         try {
-            List<MonthlyData> data = visualService.getInsuranceMonthly(CLAIMS);
+            List<MonthlyData> data = visualService.getInsuranceInjuryMonthly(CLAIMS);
             model.addAttribute("code", 200);
             model.addAttribute("message", "各月出险数据获取成功！");
             model.addAttribute("EveryMonthInjury", data);
@@ -156,7 +157,7 @@ public class OverviewApi {
     @ResponseBody
     public Model insuranceEveryInsurancePlan(Model model) {
         try {
-            List<InsuranceTypeData> data = visualService.getInsuranceByType(SALES);
+            List<InsuranceTypeData> data = visualService.getInsurancePlanByType(SALES);
             model.addAttribute("code", 200);
             model.addAttribute("message", "保险种类个方案销售占比数据获取成功！");
             model.addAttribute("EveryInsurancePlan", data);

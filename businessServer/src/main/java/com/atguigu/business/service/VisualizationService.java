@@ -37,6 +37,12 @@ public class VisualizationService {
         return insuranceCollection;
     }
 
+    public MongoCollection<Document> getInsurancePlanCollection() {
+        if (null == insuranceCollection)
+            insuranceCollection = mongoClient.getDatabase(Constant.MONGODB_DATABASE).getCollection(Constant.MONGODB_VIRTUAL_INSURANCE_PLAN_COLLECTION);
+        return insuranceCollection;
+    }
+
     private MongoCollection<Document> provinceCollection;
 
     public MongoCollection<Document> getProvinceCollection() {
@@ -61,11 +67,28 @@ public class VisualizationService {
         return monthlyCollection;
     }
 
-    public List<InsuranceTypeData> getInsuranceByType(String type) {
+    public MongoCollection<Document> getMonthlyInjuryCollection() {
+        if (null == monthlyCollection)
+            monthlyCollection = mongoClient.getDatabase(Constant.MONGODB_DATABASE).getCollection(Constant.MONGODB_VIRTUAL_MONTHLY_INJURY_COLLECTION);
+        return monthlyCollection;
+    }
+
+    public List<InsuranceTypeData> getInsurancePlanByType(String type) {
         // type 就不用了，直接返回全部吧
         List<InsuranceTypeData> result = new ArrayList<>();
-        getInsuranceCollection().find().forEach((Block<? super Document>)
+        getInsurancePlanCollection().find().forEach((Block<? super Document>)
                 document -> result.add(documentToInsurance(document)));
+
+        if (result.size() == 0) {
+            return Collections.emptyList();
+        }
+        return result;
+    }
+
+    public List<Document> getInsuranceByType(String type) {
+        // type 就不用了，直接返回全部吧
+        List<Document> result = new ArrayList<>();
+        getInsuranceCollection().find().forEach((Block<? super Document>) result::add);
 
         if (result.size() == 0) {
             return Collections.emptyList();
@@ -87,6 +110,16 @@ public class VisualizationService {
     public List<MonthlyData> getInsuranceMonthly(String type) {
         List<MonthlyData> result = new ArrayList<>();
         getMonthlyCollection().find().forEach((Block<? super Document>)
+                document -> result.add(documentToMonthlyData(document)));
+
+        if (result.size() == 0) {
+            return Collections.emptyList();
+        }
+        return result;
+    }
+    public List<MonthlyData> getInsuranceInjuryMonthly(String type) {
+        List<MonthlyData> result = new ArrayList<>();
+        getMonthlyInjuryCollection().find().forEach((Block<? super Document>)
                 document -> result.add(documentToMonthlyData(document)));
 
         if (result.size() == 0) {
