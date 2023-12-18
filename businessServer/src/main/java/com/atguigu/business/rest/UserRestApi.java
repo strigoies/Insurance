@@ -72,10 +72,10 @@ public class UserRestApi {
         return model;
     }
 
-    //用户查找
-    @RequestMapping(value = "find-user", produces = "application/json", method = RequestMethod.GET)
+    // 用户列表展示
+    @RequestMapping(value = "find-users", produces = "application/json", method = RequestMethod.GET)
     @ResponseBody
-    public Model findOrder(@RequestParam("offset") int offset,@RequestParam("limit") int limit, Model model) {
+    public Model findUser(@RequestParam("offset") int offset,@RequestParam("limit") int limit, Model model) {
         //查询订单
         List<User> users = userService.findUsers(offset,limit);
         if (users == null) {
@@ -86,6 +86,21 @@ public class UserRestApi {
         model.addAttribute("order", users);
         return model;
     }
+
+    // 单个用户信息获取
+    @RequestMapping(value = "find-user", produces = "application/json", method = RequestMethod.GET)
+    @ResponseBody
+    public Model getUser(@RequestParam("uid") int uid, Model model) {
+        User users = userService.findByUID(uid);
+        if (users == null) {
+            model.addAttribute("false", false);
+        } else {
+            model.addAttribute("success", true);
+        }
+        model.addAttribute("order", users);
+        return model;
+    }
+
     //用户删除
     @RequestMapping(value = "delete-user", produces = "application/json", method = RequestMethod.DELETE)
     @ResponseBody

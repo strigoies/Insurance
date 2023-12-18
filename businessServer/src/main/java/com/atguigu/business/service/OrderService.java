@@ -1,6 +1,7 @@
 package com.atguigu.business.service;
 
 import com.atguigu.business.model.domain.Order;
+import com.atguigu.business.model.domain.User;
 import com.atguigu.business.model.request.OrderRequest;
 import com.atguigu.business.utils.Constant;
 import com.fasterxml.jackson.core.JsonParseException;
@@ -202,5 +203,14 @@ public class OrderService {
         return insurancePercentages;
     }
 
+    // 分页查订单
+    public List<Order> findUsers(int offset, int limit){
+        List<Order> result = new ArrayList<>();
+        getOrderCollection().find().limit(limit).skip(offset).forEach((Block<? super Document>) document -> result.add(documentToOrder(document)));
+        if (result.size() == 0) {
+            return Collections.emptyList();
+        }
+        return result;
+    }
 
 }

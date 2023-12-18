@@ -10,37 +10,11 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ad15df8b-8e7a-4a01-b88b-6db965613286" name="Default" comment="订单返回多个">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/08040d75-08ce-40c7-ac5e-4bc2d986862c.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/08040d75-08ce-40c7-ac5e-4bc2d986862c.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/businessServer/src/main/java/com/atguigu/business/model/request/UpdateRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/businessServer/src/main/java/com/atguigu/business/model/request/UpdateRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/businessServer/src/main/java/com/atguigu/business/rest/MovieRestApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/businessServer/src/main/java/com/atguigu/business/rest/MovieRestApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/businessServer/src/main/java/com/atguigu/business/rest/OrderRestApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/businessServer/src/main/java/com/atguigu/business/rest/OrderRestApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/businessServer/src/main/java/com/atguigu/business/rest/UserRestApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/businessServer/src/main/java/com/atguigu/business/rest/UserRestApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/businessServer/src/main/java/com/atguigu/business/service/OrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/businessServer/src/main/java/com/atguigu/business/service/OrderService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/businessServer/src/main/java/com/atguigu/business/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/businessServer/src/main/java/com/atguigu/business/service/UserService.java" afterDir="false" />
+    <list default="true" id="ad15df8b-8e7a-4a01-b88b-6db965613286" name="Default" comment="新增订单删除，用户删除，修改，查看">
       <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer.war" beforeDir="false" afterPath="$PROJECT_DIR$/businessServer/target/BusinessServer.war" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/classes/com/atguigu/business/rest/MovieRestApi.class" beforeDir="false" afterPath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/classes/com/atguigu/business/rest/MovieRestApi.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/classes/com/atguigu/business/rest/OrderRestApi.class" beforeDir="false" afterPath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/classes/com/atguigu/business/rest/OrderRestApi.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/classes/com/atguigu/business/rest/UserRestApi.class" beforeDir="false" afterPath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/classes/com/atguigu/business/rest/UserRestApi.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/classes/com/atguigu/business/service/OrderService.class" beforeDir="false" afterPath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/classes/com/atguigu/business/service/OrderService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/classes/com/atguigu/business/service/RecommenderService$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/classes/com/atguigu/business/service/RecommenderService$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/classes/com/atguigu/business/service/RecommenderService$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/classes/com/atguigu/business/service/RecommenderService$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/classes/com/atguigu/business/service/RecommenderService.class" beforeDir="false" afterPath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/classes/com/atguigu/business/service/RecommenderService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/classes/com/atguigu/business/service/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/classes/com/atguigu/business/service/UserService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/classes/com/atguigu/business/utils/Constant.class" beforeDir="false" afterPath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/classes/com/atguigu/business/utils/Constant.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/classes/recommend.properties" beforeDir="false" afterPath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/classes/recommend.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/lib/bson-3.5.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/lib/mongodb-driver-3.5.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/lib/mongodb-driver-core-3.5.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/businessServer/target/BusinessServer/WEB-INF/web.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/businessServer/target/classes/com/atguigu/business/rest/MovieRestApi.class" beforeDir="false" afterPath="$PROJECT_DIR$/businessServer/target/classes/com/atguigu/business/rest/MovieRestApi.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/businessServer/target/classes/com/atguigu/business/rest/OrderRestApi.class" beforeDir="false" afterPath="$PROJECT_DIR$/businessServer/target/classes/com/atguigu/business/rest/OrderRestApi.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/businessServer/target/classes/com/atguigu/business/rest/UserRestApi.class" beforeDir="false" afterPath="$PROJECT_DIR$/businessServer/target/classes/com/atguigu/business/rest/UserRestApi.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/businessServer/target/classes/com/atguigu/business/service/OrderService.class" beforeDir="false" afterPath="$PROJECT_DIR$/businessServer/target/classes/com/atguigu/business/service/OrderService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/businessServer/target/classes/com/atguigu/business/service/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/businessServer/target/classes/com/atguigu/business/service/UserService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/businessServer/target/classes/recommend.properties" beforeDir="false" afterPath="$PROJECT_DIR$/businessServer/target/classes/recommend.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/businessServer/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/businessServer/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -935,7 +909,8 @@
       <workItem from="1701588957711" duration="6628000" />
       <workItem from="1701758806701" duration="1194000" />
       <workItem from="1702460566453" duration="12711000" />
-      <workItem from="1702719858359" duration="4193000" />
+      <workItem from="1702719858359" duration="5838000" />
+      <workItem from="1702727793315" duration="3167000" />
     </task>
     <task id="LOCAL-00001" summary="梳理下现有接口用到的表和接口逻辑">
       <option name="closed" value="true" />
@@ -993,7 +968,23 @@
       <option name="project" value="LOCAL" />
       <updated>1700914379156</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="新增订单删除，用户删除，修改，查看">
+      <option name="closed" value="true" />
+      <created>1702724193421</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1702724193421</updated>
+    </task>
+    <task id="LOCAL-00009" summary="新增订单删除，用户删除，修改，查看">
+      <option name="closed" value="true" />
+      <created>1702727933659</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1702727933659</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -1072,7 +1063,8 @@
     <MESSAGE value="修改配置文件" />
     <MESSAGE value="修改es连接为http，取消ssl" />
     <MESSAGE value="订单返回多个" />
-    <option name="LAST_COMMIT_MESSAGE" value="订单返回多个" />
+    <MESSAGE value="新增订单删除，用户删除，修改，查看" />
+    <option name="LAST_COMMIT_MESSAGE" value="新增订单删除，用户删除，修改，查看" />
   </component>
   <component name="editorHistoryManager">
     <entry file="jar://$MAVEN_REPOSITORY$/org/apache/spark/spark-core_2.11/2.1.1/spark-core_2.11-2.1.1-sources.jar!/org/apache/spark/rdd/RDD.scala">

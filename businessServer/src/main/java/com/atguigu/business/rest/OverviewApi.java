@@ -30,7 +30,7 @@ public class OverviewApi {
     @ResponseBody
     public Model insuranceEveryInsurance(Model model) {
         try {
-            List<Document> data = visualService.getInsuranceByType(SALES);
+            List<EveryInjuryInsurance> data = visualService.getInsuranceByType(SALES);
             model.addAttribute("code", 200);
             model.addAttribute("message", "保险种类销售数据获取成功！");
             model.addAttribute("EveryInsurance", data);
@@ -51,7 +51,7 @@ public class OverviewApi {
     @ResponseBody
     public Model provinceEveryInjury(Model model) {
         try {
-            List<ProvinceData> data = visualService.getInsuranceByProvince(SALES);
+            List<EveryInjuryInsurance> data = visualService.getInsuranceByProvince(SALES);
             ;
             model.addAttribute("code", 200);
             model.addAttribute("message", "各省分布数据获取成功！");
@@ -73,7 +73,7 @@ public class OverviewApi {
     @ResponseBody
     public Model monthEveryMonthBuyInsurance(Model model) {
         try {
-            List<MonthlyData> data = visualService.getInsuranceMonthly(SALES);
+            List<EveryInjuryInsurance> data = visualService.getInsuranceMonthly(SALES);
             model.addAttribute("code", 200);
             model.addAttribute("message", "各月销售保险数据获取成功！");
             model.addAttribute("EveryMonthBuyInsurance", data);
@@ -94,7 +94,7 @@ public class OverviewApi {
     @ResponseBody
     public Model monthEveryMonthInjury(Model model) {
         try {
-            List<MonthlyData> data = visualService.getInsuranceInjuryMonthly(CLAIMS);
+            List<EveryInjuryInsurance> data = visualService.getInsuranceInjuryMonthly(CLAIMS);
             model.addAttribute("code", 200);
             model.addAttribute("message", "各月出险数据获取成功！");
             model.addAttribute("EveryMonthInjury", data);
@@ -115,7 +115,7 @@ public class OverviewApi {
     @ResponseBody
     public Model avatarEveryAvatarInjury(Model model) {
         try {
-            List<IndustryData> data = visualService.getInsuranceByIndustry(CLAIMS);
+            List<EveryInjuryInsurance> data = visualService.getInsuranceByIndustry(CLAIMS);
             model.addAttribute("code", 200);
             model.addAttribute("message", "各行业出险数量数据获取成功！");
             model.addAttribute("EveryAvatarInjury", data);
@@ -136,7 +136,7 @@ public class OverviewApi {
     @ResponseBody
     public Model avatarEveryAvatarBuyInsurance(Model model) {
         try {
-            List<IndustryData> data = visualService.getInsuranceByIndustry(SALES);
+            List<EveryInjuryInsurance> data = visualService.getInsuranceByIndustry(SALES);
             model.addAttribute("code", 200);
             model.addAttribute("message", "各行业购买保险数据获取成功！");
             model.addAttribute("EveryAvatarBuyInsurance", data);
@@ -157,7 +157,7 @@ public class OverviewApi {
     @ResponseBody
     public Model insuranceEveryInsurancePlan(Model model) {
         try {
-            List<InsuranceTypeData> data = visualService.getInsurancePlanByType(SALES);
+            List<EveryInjuryInsurancePlan> data = visualService.getInsurancePlanByType(SALES);
             model.addAttribute("code", 200);
             model.addAttribute("message", "保险种类个方案销售占比数据获取成功！");
             model.addAttribute("EveryInsurancePlan", data);

@@ -1,6 +1,7 @@
 package com.atguigu.business.rest;
 
 import com.atguigu.business.model.domain.Order;
+import com.atguigu.business.model.domain.User;
 import com.atguigu.business.model.request.OrderRequest;
 import com.atguigu.business.model.request.UpdateRequest;
 import com.atguigu.business.service.OrderService;
@@ -25,10 +26,11 @@ public class OrderRestApi {
     @Autowired
     private OrderService orderService;
 
+    //创建订单
     @RequestMapping(value = "create-order", produces = "application/json", method = RequestMethod.GET)
     @ResponseBody
     public Model createOrder(@RequestParam("uid") int uid, @RequestParam("mid") int mid, Model model) {
-        //创建订单
+
         if (orderService.createOrder(new OrderRequest(uid, mid))) model.addAttribute("success", true);
         else model.addAttribute("success", false);
         return model;
@@ -61,7 +63,6 @@ public class OrderRestApi {
         return model;
     }
 
-
     //查询订单
     @RequestMapping(value = "find-order", produces = "application/json", method = RequestMethod.GET)
     @ResponseBody
@@ -76,10 +77,10 @@ public class OrderRestApi {
         return model;
     }
 
+    //获取订单数量
     @RequestMapping(value = "order-percentum", produces = "application/json", method = RequestMethod.GET)
     @ResponseBody
     public Model orderPercentum(Model model) {
-        //获取订单数量
         Map<String, String> midCounts = orderService.getInsuranceNamePercentages();
         if (midCounts != null) {
             model.addAttribute("success", true);
@@ -91,6 +92,21 @@ public class OrderRestApi {
             model.addAttribute("success", false);
         }
         model.addAttribute("percentum", midCounts);
+        return model;
+    }
+
+    // 订单列表展示
+    @RequestMapping(value = "find-orders", produces = "application/json", method = RequestMethod.GET)
+    @ResponseBody
+    public Model findUser(@RequestParam("offset") int offset,@RequestParam("limit") int limit, Model model) {
+        //查询订单
+        List<Order> order = orderService.findUsers(offset,limit);
+        if (order == null) {
+            model.addAttribute("false", false);
+        } else {
+            model.addAttribute("success", true);
+        }
+        model.addAttribute("order", order);
         return model;
     }
 }

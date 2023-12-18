@@ -73,11 +73,11 @@ public class VisualizationService {
         return monthlyCollection;
     }
 
-    public List<InsuranceTypeData> getInsurancePlanByType(String type) {
+    public List<EveryInjuryInsurancePlan> getInsurancePlanByType(String type) {
         // type 就不用了，直接返回全部吧
-        List<InsuranceTypeData> result = new ArrayList<>();
+        List<EveryInjuryInsurancePlan> result = new ArrayList<>();
         getInsurancePlanCollection().find().forEach((Block<? super Document>)
-                document -> result.add(documentToInsurance(document)));
+                document -> result.add(documentToEveryInjuryInsurancePlan(document)));
 
         if (result.size() == 0) {
             return Collections.emptyList();
@@ -85,10 +85,11 @@ public class VisualizationService {
         return result;
     }
 
-    public List<Document> getInsuranceByType(String type) {
+    public List<EveryInjuryInsurance> getInsuranceByType(String type) {
         // type 就不用了，直接返回全部吧
-        List<Document> result = new ArrayList<>();
-        getInsuranceCollection().find().forEach((Block<? super Document>) result::add);
+        List<EveryInjuryInsurance> result = new ArrayList<>();
+        getInsuranceCollection().find().forEach((Block<? super Document>)
+                document -> result.add(documentToEveryInjuryInsurance(document)));
 
         if (result.size() == 0) {
             return Collections.emptyList();
@@ -96,10 +97,10 @@ public class VisualizationService {
         return result;
     }
 
-    public List<ProvinceData> getInsuranceByProvince(String type) {
-        List<ProvinceData> result = new ArrayList<>();
+    public List<EveryInjuryInsurance> getInsuranceByProvince(String type) {
+        List<EveryInjuryInsurance> result = new ArrayList<>();
         getProvinceCollection().find().forEach((Block<? super Document>)
-                document -> result.add(documentToProvince(document)));
+                document -> result.add(documentToEveryInjuryInsurance(document)));
 
         if (result.size() == 0) {
             return Collections.emptyList();
@@ -107,20 +108,20 @@ public class VisualizationService {
         return result;
     }
 
-    public List<MonthlyData> getInsuranceMonthly(String type) {
-        List<MonthlyData> result = new ArrayList<>();
+    public List<EveryInjuryInsurance> getInsuranceMonthly(String type) {
+        List<EveryInjuryInsurance> result = new ArrayList<>();
         getMonthlyCollection().find().forEach((Block<? super Document>)
-                document -> result.add(documentToMonthlyData(document)));
+                document -> result.add(documentToEveryInjuryInsurance(document)));
 
         if (result.size() == 0) {
             return Collections.emptyList();
         }
         return result;
     }
-    public List<MonthlyData> getInsuranceInjuryMonthly(String type) {
-        List<MonthlyData> result = new ArrayList<>();
+    public List<EveryInjuryInsurance> getInsuranceInjuryMonthly(String type) {
+        List<EveryInjuryInsurance> result = new ArrayList<>();
         getMonthlyInjuryCollection().find().forEach((Block<? super Document>)
-                document -> result.add(documentToMonthlyData(document)));
+                document -> result.add(documentToEveryInjuryInsurance(document)));
 
         if (result.size() == 0) {
             return Collections.emptyList();
@@ -128,10 +129,10 @@ public class VisualizationService {
         return result;
     }
 
-    public List<IndustryData> getInsuranceByIndustry(String type) {
-        List<IndustryData> result = new ArrayList<>();
+    public List<EveryInjuryInsurance> getInsuranceByIndustry(String type) {
+        List<EveryInjuryInsurance> result = new ArrayList<>();
         getIndustryCollection().find().forEach((Block<? super Document>)
-                document -> result.add(documentToIndustry(document)));
+                document -> result.add(documentToEveryInjuryInsurance(document)));
 
         if (result.size() == 0) {
             return Collections.emptyList();
@@ -139,62 +140,25 @@ public class VisualizationService {
         return result;
     }
 
-    public InsuranceTypeData documentToInsurance(Document document) {
+    private EveryInjuryInsurance documentToEveryInjuryInsurance(Document document) {
+        EveryInjuryInsurance everyInjuryInsurance = null;
         try {
-            return objectMapper.readValue(JSON.serialize(document), InsuranceTypeData.class);
-        } catch (JsonParseException e) {
-            e.printStackTrace();
-            return null;
-        } catch (JsonMappingException e) {
-            e.printStackTrace();
-            return null;
+            everyInjuryInsurance = objectMapper.readValue(JSON.serialize(document), EveryInjuryInsurance.class);
         } catch (IOException e) {
             e.printStackTrace();
-            return null;
         }
+        return everyInjuryInsurance;
     }
 
-    public IndustryData documentToIndustry(Document document) {
+    private EveryInjuryInsurancePlan documentToEveryInjuryInsurancePlan(Document document) {
+        EveryInjuryInsurancePlan everyInjuryInsurance = null;
         try {
-            return objectMapper.readValue(JSON.serialize(document), IndustryData.class);
-        } catch (JsonParseException e) {
-            e.printStackTrace();
-            return null;
-        } catch (JsonMappingException e) {
-            e.printStackTrace();
-            return null;
+            everyInjuryInsurance = objectMapper.readValue(JSON.serialize(document), EveryInjuryInsurancePlan.class);
         } catch (IOException e) {
             e.printStackTrace();
-            return null;
         }
+        return everyInjuryInsurance;
     }
 
-    public ProvinceData documentToProvince(Document document) {
-        try {
-            return objectMapper.readValue(JSON.serialize(document), ProvinceData.class);
-        } catch (JsonParseException e) {
-            e.printStackTrace();
-            return null;
-        } catch (JsonMappingException e) {
-            e.printStackTrace();
-            return null;
-        } catch (IOException e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
-    public MonthlyData documentToMonthlyData(Document document) {
-        try {
-            return objectMapper.readValue(JSON.serialize(document), MonthlyData.class);
-        } catch (JsonParseException e) {
-            e.printStackTrace();
-            return null;
-        } catch (JsonMappingException e) {
-            e.printStackTrace();
-            return null;
-        } catch (IOException e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
+
 }
